@@ -6,21 +6,9 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>2027년 공무원 시험합격</title>
 <style>
-:root {
-  --navy:#183251;
-  --blue:#326cdb;
-  --bg:#f4f7fb;
-  --ink:#23344c;
-  --line:#e0e7f0;
-  --muted:#718198;
-  --green:#178366;
-  --red:#c84e5b;
-}
+:root{--navy:#183251;--blue:#326cdb;--bg:#f4f7fb;--ink:#23344c;--line:#e0e7f0;--muted:#718198;--green:#178366;--red:#c84e5b}
 *{box-sizing:border-box}
-body{
-  margin:0;background:var(--bg);color:var(--ink);
-  font:14px/1.55 system-ui,"Malgun Gothic",sans-serif
-}
+body{margin:0;background:var(--bg);color:var(--ink);font:14px/1.55 system-ui,"Malgun Gothic",sans-serif}
 button,input,select{font:inherit}
 button{cursor:pointer}
 button:disabled{opacity:.55;cursor:wait}
@@ -30,39 +18,16 @@ h2{font-size:18px;margin-bottom:12px}
 h3{font-size:15px;margin-bottom:9px}
 small,.muted{color:var(--muted)}
 .layout{display:flex;min-height:100vh}
-.sidebar{
-  background:var(--navy);color:white;
-  width:225px;flex-shrink:0;padding:22px 13px
-}
-.brand{
-  font-size:19px;font-weight:800;
-  padding:10px 9px 24px;line-height:1.35
-}
-.brand small{
-  display:block;color:#bbcee8;
-  font-size:11px;margin-top:9px
-}
+.sidebar{background:var(--navy);color:white;width:225px;flex-shrink:0;padding:22px 13px}
+.brand{font-size:19px;font-weight:800;padding:10px 9px 24px;line-height:1.35}
+.brand small{display:block;color:#bbcee8;font-size:11px;margin-top:9px}
 .nav{display:grid;gap:6px}
-.nav button{
-  border:0;background:transparent;color:#c7d7eb;
-  text-align:left;padding:12px;border-radius:9px;font-weight:700
-}
-.nav button.active,.nav button:hover{
-  background:#38577c;color:white
-}
-.main{
-  width:100%;max-width:1240px;
-  margin:auto;padding:28px;min-width:0
-}
-.top{
-  display:flex;justify-content:space-between;
-  gap:12px;align-items:center;margin-bottom:18px
-}
+.nav button{border:0;background:transparent;color:#c7d7eb;text-align:left;padding:12px;border-radius:9px;font-weight:700}
+.nav button.active,.nav button:hover{background:#38577c;color:white}
+.main{width:100%;max-width:1240px;margin:auto;padding:28px;min-width:0}
+.top{display:flex;justify-content:space-between;gap:12px;align-items:center;margin-bottom:18px}
 .top small{color:var(--muted)}
-.card,.metric{
-  background:white;border:1px solid var(--line);
-  border-radius:15px;padding:18px;margin-top:14px
-}
+.card,.metric{background:white;border:1px solid var(--line);border-radius:15px;padding:18px;margin-top:14px}
 .metric{margin:0}
 .grid3,.grid2{display:grid;gap:12px;margin-top:14px}
 .grid3{grid-template-columns:repeat(3,minmax(0,1fr))}
@@ -72,166 +37,75 @@ small,.muted{color:var(--muted)}
 .big.money{font-size:23px}
 .positive{color:var(--green)}
 .negative{color:var(--red)}
-.hero{
-  background:linear-gradient(115deg,#193654,#3562a1);
-  color:white;border-radius:16px;padding:21px;
-  display:flex;justify-content:space-between;
-  gap:12px;align-items:center
-}
+.hero{background:linear-gradient(115deg,#193654,#3562a1);color:white;border-radius:16px;padding:21px;display:flex;justify-content:space-between;gap:12px;align-items:center}
 .hero p{color:#d4e1f4;font-size:12px}
 .countdowns{display:flex;gap:10px}
-.count{
-  background:#ffffff19;border-radius:11px;
-  padding:11px;text-align:center;min-width:133px
-}
+.count{background:#ffffff19;border-radius:11px;padding:11px;text-align:center;min-width:133px}
 .count b{display:block;font-size:28px;line-height:1.3}
 .count small{font-size:11px;color:#e0eafa}
 .count.application b{color:#ffda91}
-.progress{
-  height:11px;background:#e7edf5;
-  border-radius:99px;overflow:hidden;margin:10px 0
-}
-.progress i{
-  height:100%;display:block;
-  background:#4b82e8;border-radius:99px
-}
-.subjects{
-  display:grid;
-  grid-template-columns:repeat(auto-fit,minmax(175px,1fr));
-  gap:10px
-}
-.subject{
-  border:1px solid var(--line);
-  border-radius:11px;padding:12px
-}
+.progress{height:11px;background:#e7edf5;border-radius:99px;overflow:hidden;margin:10px 0}
+.progress i{height:100%;display:block;background:#4b82e8;border-radius:99px}
+.subjects{display:grid;grid-template-columns:repeat(auto-fit,minmax(175px,1fr));gap:10px}
+.subject{border:1px solid var(--line);border-radius:11px;padding:12px}
 .subject small{font-size:12px}
-.row{
-  display:flex;align-items:center;
-  justify-content:space-between;gap:10px;flex-wrap:wrap
-}
-.btn{
-  border:1px solid #d4dfed;border-radius:9px;
-  padding:9px 12px;background:white;
-  color:#315171;font-weight:750
-}
-.btn.primary{
-  background:var(--blue);color:white;
-  border-color:var(--blue)
-}
+.row{display:flex;align-items:center;justify-content:space-between;gap:10px;flex-wrap:wrap}
+.btn{border:1px solid #d4dfed;border-radius:9px;padding:9px 12px;background:white;color:#315171;font-weight:750}
+.btn.primary{background:var(--blue);color:white;border-color:var(--blue)}
 .btn.danger{color:var(--red)}
 .btn.small{padding:5px 8px;font-size:12px}
-.form{
-  display:grid;
-  grid-template-columns:repeat(auto-fit,minmax(170px,1fr));
-  gap:12px
-}
+.form{display:grid;grid-template-columns:repeat(auto-fit,minmax(170px,1fr));gap:12px}
 .field{display:flex;flex-direction:column;gap:5px}
-.field label{
-  font-weight:750;font-size:12px;color:#60738b
-}
-.field input,.field select{
-  padding:10px;width:100%;min-width:0;
-  border:1px solid #d7e1ed;
-  border-radius:9px;background:white
-}
-.note{
-  background:#eef4fc;border-radius:10px;
-  padding:12px;color:#506b89;
-  font-size:12px;margin-top:12px
-}
+.field label{font-weight:750;font-size:12px;color:#60738b}
+.field input,.field select{padding:10px;width:100%;min-width:0;border:1px solid #d7e1ed;border-radius:9px;background:white}
+.note{background:#eef4fc;border-radius:10px;padding:12px;color:#506b89;font-size:12px;margin-top:12px}
 .warn{background:#fff5e8;color:#855c22}
 .list{display:grid;gap:6px}
-.item{
-  display:flex;justify-content:space-between;
-  gap:10px;align-items:center;
-  padding:8px 0;border-bottom:1px solid #eef2f7
-}
+.item{display:flex;justify-content:space-between;gap:10px;align-items:center;padding:8px 0;border-bottom:1px solid #eef2f7}
 .item:last-child{border:0}
 .tablewrap{overflow:auto}
 table{width:100%;border-collapse:collapse;font-size:12px}
-td,th{
-  text-align:left;padding:10px;
-  border-bottom:1px solid #e9eef5;
-  white-space:nowrap
-}
+td,th{text-align:left;padding:10px;border-bottom:1px solid #e9eef5;white-space:nowrap}
 th{color:var(--muted)}
-.calendar{
-  display:grid;
-  grid-template-columns:repeat(auto-fit,minmax(235px,1fr));
-  gap:12px
-}
-.month{
-  border:1px solid var(--line);
-  border-radius:11px;padding:12px
-}
-.days{
-  display:grid;
-  grid-template-columns:repeat(7,minmax(0,1fr));
-  gap:3px
-}
-.day{
-  height:29px;border:0;border-radius:5px;
-  background:#e4efff;color:#3866aa;
-  font-size:11px;padding:0
-}
-.day.head,.day.blank{
-  background:transparent;color:#8595a9
-}
+.calendar{display:grid;grid-template-columns:repeat(auto-fit,minmax(235px,1fr));gap:12px}
+.month{border:1px solid var(--line);border-radius:11px;padding:12px}
+.days{display:grid;grid-template-columns:repeat(7,minmax(0,1fr));gap:3px}
+.day{height:29px;border:0;border-radius:5px;background:#e4efff;color:#3866aa;font-size:11px;padding:0}
+.day.head,.day.blank{background:transparent;color:#8595a9}
 .day.past{background:#e7eaf0;color:#9ba5b3}
 .day.done{background:#cceede;color:#137252}
 .day.partial{background:#ffedcc;color:#926119}
 .day.rest{background:#efebf7;color:#8a79a0}
-.day.exam{
-  background:#d95565;color:white;font-weight:900
-}
-.day.today{
-  outline:2px solid #285fcc;outline-offset:-2px
-}
-.day.apply{
-  box-shadow:inset 0 0 0 3px #e9a325;
-  font-weight:900
-}
-.legend{
-  display:flex;gap:12px;flex-wrap:wrap;
-  color:var(--muted);font-size:12px;margin:12px 0
-}
-.dot{
-  display:inline-block;width:10px;height:10px;
-  border-radius:2px;margin-right:4px
-}
-.status{
-  font-size:12px;color:#bcd0e8;padding:10px
-}
-.login-wrap{
-  max-width:440px;margin:10vh auto;padding:16px
-}
+.day.exam{background:#d95565;color:white;font-weight:900}
+.day.today{outline:2px solid #285fcc;outline-offset:-2px}
+.day.apply{box-shadow:inset 0 0 0 3px #e9a325;font-weight:900}
+.legend{display:flex;gap:12px;flex-wrap:wrap;color:var(--muted);font-size:12px;margin:12px 0}
+.dot{display:inline-block;width:10px;height:10px;border-radius:2px;margin-right:4px}
+.status{font-size:12px;color:#bcd0e8;padding:10px}
+.login-wrap{max-width:440px;margin:10vh auto;padding:16px}
 .login-wrap .card{padding:26px}
 .login-wrap .field{margin-top:12px}
 .login-wrap button{width:100%;margin-top:16px}
 .hidden{display:none!important}
-.foot{
-  color:var(--muted);font-size:12px;margin-top:18px
-}
+.foot{color:var(--muted);font-size:12px;margin-top:18px}
 @media(max-width:800px){
-  .layout{display:block}
-  .sidebar{width:auto;padding:11px}
-  .brand{font-size:17px;padding:3px 5px 10px}
-  .brand small{display:none}
-  .nav{display:flex;overflow:auto}
-  .nav button{
-    white-space:nowrap;font-size:12px;padding:9px
-  }
-  .main{padding:14px}
-  .hero{flex-direction:column;align-items:stretch}
-  .countdowns{width:100%}
-  .count{flex:1;min-width:0}
-  .count b{font-size:24px}
-  .grid3{gap:7px}
-  .metric{padding:11px 8px}
-  .metric small{font-size:10px}
-  .big{font-size:21px}
-  .big.money{font-size:15px}
-  .grid2{grid-template-columns:1fr}
+.layout{display:block}
+.sidebar{width:auto;padding:11px}
+.brand{font-size:17px;padding:3px 5px 10px}
+.brand small{display:none}
+.nav{display:flex;overflow:auto}
+.nav button{white-space:nowrap;font-size:12px;padding:9px}
+.main{padding:14px}
+.hero{flex-direction:column;align-items:stretch}
+.countdowns{width:100%}
+.count{flex:1;min-width:0}
+.count b{font-size:24px}
+.grid3{gap:7px}
+.metric{padding:11px 8px}
+.metric small{font-size:10px}
+.big{font-size:21px}
+.big.money{font-size:15px}
+.grid2{grid-template-columns:1fr}
 }
 </style>
 </head>
@@ -240,27 +114,19 @@ th{color:var(--muted)}
 <div id="login" class="login-wrap">
   <div class="card">
     <h1>📚 2027년 공무원 시험합격</h1>
-    <p class="muted" style="margin-top:8px">
-      배우자와 함께 쓰는 실시간 학습 플래너
-    </p>
+    <p class="muted" style="margin-top:8px">배우자와 함께 쓰는 실시간 학습 플래너</p>
     <form id="loginForm">
       <div class="field">
         <label for="email">Firebase 로그인 이메일</label>
-        <input id="email" type="email"
-          autocomplete="username" required>
+        <input id="email" type="email" autocomplete="username" required>
       </div>
       <div class="field">
         <label for="password">비밀번호</label>
-        <input id="password" type="password"
-          autocomplete="current-password" required>
+        <input id="password" type="password" autocomplete="current-password" required>
       </div>
-      <button class="btn primary" type="submit">
-        로그인
-      </button>
+      <button class="btn primary" type="submit">로그인</button>
     </form>
-    <p id="loginMessage" class="note">
-      Firebase 설정 후 로그인할 수 있습니다.
-    </p>
+    <p id="loginMessage" class="note">전용 계정으로 로그인하세요.</p>
   </div>
 </div>
 
@@ -271,13 +137,8 @@ th{color:var(--muted)}
       <small>부부 공동 학습 플래너</small>
     </div>
     <nav id="nav" class="nav"></nav>
-    <div id="syncStatus" class="status">
-      연결 중...
-    </div>
-    <button id="logout" class="btn small"
-      style="margin:6px 10px">
-      로그아웃
-    </button>
+    <div id="syncStatus" class="status">연결 중...</div>
+    <button id="logout" class="btn small" style="margin:6px 10px">로그아웃</button>
   </aside>
   <main class="main">
     <div id="view"></div>
@@ -297,8 +158,7 @@ import {
   signInWithEmailAndPassword,
   onAuthStateChanged,
   signOut
-}
-from 'https://www.gstatic.com/firebasejs/11.10.0/firebase-auth.js';
+} from 'https://www.gstatic.com/firebasejs/11.10.0/firebase-auth.js';
 
 import {
   getFirestore,
@@ -310,39 +170,34 @@ import {
   deleteDoc,
   writeBatch,
   onSnapshot
-}
-from 'https://www.gstatic.com/firebasejs/11.10.0/firebase-firestore.js';
+} from 'https://www.gstatic.com/firebasejs/11.10.0/firebase-firestore.js';
 
-// ★ 본인의 Firebase 설정값으로 교체하세요.
+// Firebase 설정값 적용 완료
 const firebaseConfig = {
-  apiKey: '여기에_API_KEY',
-  authDomain: '여기에_PROJECT_ID.firebaseapp.com',
-  projectId: '여기에_PROJECT_ID',
-  storageBucket: '여기에_STORAGE_BUCKET',
-  messagingSenderId: '여기에_MESSAGING_SENDER_ID',
-  appId: '여기에_APP_ID'
+  apiKey: "AIzaSyCYsxhdn8E-J3xfpsERz1j7mzsVgyvJ_Lo",
+  authDomain: "parkexam-563c2.firebaseapp.com",
+  databaseURL: "https://parkexam-563c2-default-rtdb.firebaseio.com",
+  projectId: "parkexam-563c2",
+  storageBucket: "parkexam-563c2.firebasestorage.app",
+  messagingSenderId: "119138784614",
+  appId: "1:119138784614:web:a62bc85dc13a6066d3a4a7",
+  measurementId: "G-LM60Y9X48G"
 };
 
-const SUBJECTS = {
-  nurse:[
-    '국어','영어','지역사회간호',
-    '간호관리','LEET 추리논증'
-  ],
-  admin:[
-    '국어','영어','행정법',
-    '행정학','LEET 추리논증'
-  ]
+const SUBJECTS={
+  nurse:['국어','영어','지역사회간호','간호관리','LEET 추리논증'],
+  admin:['국어','영어','행정법','행정학','LEET 추리논증']
 };
 
-const ALL = [...new Set([
+const ALL=[...new Set([
   ...SUBJECTS.nurse,...SUBJECTS.admin
 ])];
 
-const $ = id => document.getElementById(id);
+const $=id=>document.getElementById(id);
 
-const esc = s => String(s ?? '').replace(
+const esc=s=>String(s??'').replace(
   /[&<>"']/g,
-  c => ({
+  c=>({
     '&':'&amp;',
     '<':'&lt;',
     '>':'&gt;',
@@ -351,51 +206,45 @@ const esc = s => String(s ?? '').replace(
   }[c])
 );
 
-const fmt = n =>
-  Math.round(n).toLocaleString('ko-KR');
+const fmt=n=>Math.round(n).toLocaleString('ko-KR');
 
-const fmt1 = n =>
-  Number(n).toLocaleString('ko-KR',{
-    maximumFractionDigits:1
-  });
+const fmt1=n=>Number(n).toLocaleString('ko-KR',{
+  maximumFractionDigits:1
+});
 
-const money = n =>
+const money=n=>
   (n>0?'+':n<0?'−':'')+
   fmt(Math.abs(n))+'원';
 
-const uid = () => crypto.randomUUID();
+const uid=()=>crypto.randomUUID();
 
-const today = () => {
+const today=()=>{
   let d=new Date();
   return `${d.getFullYear()}-${
     String(d.getMonth()+1).padStart(2,'0')
   }-${String(d.getDate()).padStart(2,'0')}`;
 };
 
-const dayNum = s => {
+const dayNum=s=>{
   if(!/^\d{4}-\d{2}-\d{2}$/.test(s||''))return NaN;
   let [y,m,d]=s.split('-').map(Number);
   let n=Date.UTC(y,m-1,d);
   let t=new Date(n);
-
   return t.getUTCFullYear()===y &&
     t.getUTCMonth()===m-1 &&
     t.getUTCDate()===d
-    ? n/86400000 : NaN;
+    ?n/86400000:NaN;
 };
 
-const diff = (a,b) => dayNum(b)-dayNum(a);
+const diff=(a,b)=>dayNum(b)-dayNum(a);
+const fromDay=n=>new Date(n*86400000).toISOString().slice(0,10);
 
-const fromDay = n =>
-  new Date(n*86400000).toISOString().slice(0,10);
-
-const dday = s => {
+const dday=s=>{
   let n=diff(today(),s);
-  return n>0?'D-'+n:
-    n===0?'D-DAY':'D+'+(-n);
+  return n>0?'D-'+n:n===0?'D-DAY':'D+'+(-n);
 };
 
-const defaults = () => ({
+const defaults=()=>({
   mode:'nurse',
   startDate:today(),
   targetDate:'2027-06-19',
@@ -408,54 +257,41 @@ const defaults = () => ({
   futureAnnualCost:100
 });
 
-const defaultPapers = () => {
+const defaultPapers=()=>{
   let a=[];
-
   for(let y=2016;y<=2026;y++){
     for(let s of ['국어','영어']){
       for(let type of ['국가직 9급','지방직 9급']){
         a.push({
           id:`p-${s}-${y}-${type}`,
-          subject:s,
-          year:y,
-          type,
-          questions:20
+          subject:s,year:y,type,questions:20
         });
       }
     }
-
     for(let s of [
       '지역사회간호','간호관리',
       '행정법','행정학'
     ]){
       a.push({
         id:`p-${s}-${y}-기출`,
-        subject:s,
-        year:y,
-        type:'연도별 기출',
-        questions:20
+        subject:s,year:y,
+        type:'연도별 기출',questions:20
       });
     }
   }
-
   for(let y=2021;y<=2026;y++){
     a.push({
       id:`p-LEET-${y}`,
       subject:'LEET 추리논증',
-      year:y,
-      type:'추리논증',
-      questions:40
+      year:y,type:'추리논증',questions:40
     });
   }
-
   return a;
 };
 
 let auth,fire,user=null;
 let tab='dashboard';
-let unsubs=[];
-let ready={};
-let busy=false;
+let unsubs=[],ready={},busy=false;
 
 let state={
   settings:defaults(),
@@ -469,7 +305,7 @@ let selectedPaper='';
 let selectedDate=today();
 let paperFilter='국어';
 
-const refs = () => ({
+const refs=()=>({
   settings:doc(
     fire,'users',user.uid,'settings','main'
   ),
@@ -484,85 +320,69 @@ const refs = () => ({
   )
 });
 
-const sub = () =>
-  SUBJECTS[state.settings.mode] || SUBJECTS.nurse;
+const sub=()=>SUBJECTS[state.settings.mode]||SUBJECTS.nurse;
 
-const papers = () =>
-  state.papers.filter(
-    p=>sub().includes(p.subject)
-  );
+const papers=()=>state.papers.filter(
+  p=>sub().includes(p.subject)
+);
 
-const entries = () =>
-  state.entries.filter(
-    e=>sub().includes(e.subject)
-  );
+const entries=()=>state.entries.filter(
+  e=>sub().includes(e.subject)
+);
 
-const totalBase = () =>
-  papers().reduce(
-    (n,p)=>n+Number(p.questions||0),0
-  );
+const totalBase=()=>papers().reduce(
+  (n,p)=>n+Number(p.questions||0),0
+);
 
-const goal = () =>
-  totalBase()*Number(state.settings.rounds||15);
+const goal=()=>totalBase()*Number(state.settings.rounds||15);
 
-const solved = () =>
-  entries().reduce(
-    (n,e)=>n+Number(e.count||0),0
-  );
+const solved=()=>entries().reduce(
+  (n,e)=>n+Number(e.count||0),0
+);
 
-const onDay = s =>
-  entries()
-    .filter(e=>e.date===s)
-    .reduce((n,e)=>n+Number(e.count||0),0);
+const onDay=s=>entries()
+  .filter(e=>e.date===s)
+  .reduce((n,e)=>n+Number(e.count||0),0);
 
-const planDays = () =>
-  Math.max(1,diff(
-    state.settings.startDate,
-    state.settings.targetDate
-  )||1);
+const planDays=()=>Math.max(
+  1,
+  diff(state.settings.startDate,state.settings.targetDate)||1
+);
 
-const dayGoal = () =>
-  Math.max(1,Math.ceil(goal()/planDays()));
+const dayGoal=()=>Math.max(
+  1,Math.ceil(goal()/planDays())
+);
 
-const daysLeft = () =>
-  Math.max(0,diff(
-    today(),state.settings.targetDate
-  ));
+const daysLeft=()=>Math.max(
+  0,diff(today(),state.settings.targetDate)
+);
 
-const baseMoney = () =>
-  Math.max(
-    0,
-    Number(state.settings.monthlySalary||0)-
-    Number(state.settings.monthlyChildcare||0)
-  )*10000/30;
+const baseMoney=()=>Math.max(
+  0,
+  Number(state.settings.monthlySalary||0)-
+  Number(state.settings.monthlyChildcare||0)
+)*10000/30;
 
-const isRest = s => state.rests.includes(s);
+const isRest=s=>state.rests.includes(s);
 
-const isStudyDay = s =>
+const isStudyDay=s=>
   dayNum(s)>=dayNum(state.settings.startDate) &&
   dayNum(s)<dayNum(state.settings.targetDate);
 
-const dailyProfit = s =>
+const dailyProfit=s=>
   !isStudyDay(s)||isRest(s)
-    ? 0
-    : Math.round(
-      baseMoney()*(onDay(s)/dayGoal()-1)
-    );
+  ?0
+  :Math.round(baseMoney()*(onDay(s)/dayGoal()-1));
 
-const percent = (n,d) => d?100*n/d:0;
+const percent=(n,d)=>d?100*n/d:0;
 
-const bar = p => `
-<div class="progress">
-  <i style="width:${
-    Math.min(100,Math.max(0,p))
-  }%"></i>
-</div>`;
+const bar=p=>`
+  <div class="progress">
+    <i style="width:${Math.min(100,Math.max(0,p))}%"></i>
+  </div>`;
 
-const sessions = s => {
-  let map=new Map(
-    state.papers.map(p=>[p.id,p])
-  );
-
+const sessions=s=>{
+  let map=new Map(state.papers.map(p=>[p.id,p]));
   return state.entries
     .filter(e=>e.subject===s)
     .reduce((n,e)=>n+
@@ -574,10 +394,9 @@ const sessions = s => {
       )),0);
 };
 
-const sessionGoal = s =>
-  state.papers.filter(
-    p=>p.subject===s
-  ).length*state.settings.rounds;
+const sessionGoal=s=>state.papers.filter(
+  p=>p.subject===s
+).length*state.settings.rounds;
 
 function cumulative(){
   let a=dayNum(state.settings.startDate);
@@ -586,14 +405,10 @@ function cumulative(){
     dayNum(state.settings.targetDate)-1
   );
   let sum=0;
-
-  if(!Number.isFinite(a)||
-     !Number.isFinite(b))return 0;
-
+  if(!Number.isFinite(a)||!Number.isFinite(b))return 0;
   for(let i=a;i<=b&&i<a+3650;i++){
     sum+=dailyProfit(fromDay(i));
   }
-
   return sum;
 }
 
@@ -609,9 +424,7 @@ function showApp(){
 }
 
 function setStatus(s){
-  if($('syncStatus')){
-    $('syncStatus').textContent=s;
-  }
+  if($('syncStatus'))$('syncStatus').textContent=s;
 }
 
 function failure(e){
@@ -638,43 +451,40 @@ function show(title,html){
       <h1>${title}</h1>
       <small>${today()}</small>
     </div>
-    ${html}
-  `;
+    ${html}`;
 }
 
 function hero(){
   return `
-  <div class="hero">
-    <div>
-      <h2 style="margin:0 0 4px">
-        2027년 공무원 시험합격
-      </h2>
-      <p>
-        ${
-          state.settings.mode==='nurse'
-          ?'간호직':'일반행정직'
-        }
-        · ${state.settings.rounds}회독 목표
-        · 누적 ${fmt(solved())}문항
-      </p>
-    </div>
-    <div class="countdowns">
-      <div class="count application">
-        <b>${dday(state.settings.applicationDate)}</b>
-        <small>
-          원서접수 ·
-          ${esc(state.settings.applicationDate)}
-        </small>
+    <div class="hero">
+      <div>
+        <h2 style="margin:0 0 4px">
+          2027년 공무원 시험합격
+        </h2>
+        <p>
+          ${
+            state.settings.mode==='nurse'
+              ?'간호직':'일반행정직'
+          }
+          · ${state.settings.rounds}회독 목표
+          · 누적 ${fmt(solved())}문항
+        </p>
       </div>
-      <div class="count">
-        <b>${dday(state.settings.targetDate)}</b>
-        <small>
-          필기시험 ·
-          ${esc(state.settings.targetDate)}
-        </small>
+      <div class="countdowns">
+        <div class="count application">
+          <b>${dday(state.settings.applicationDate)}</b>
+          <small>
+            원서접수 · ${esc(state.settings.applicationDate)}
+          </small>
+        </div>
+        <div class="count">
+          <b>${dday(state.settings.targetDate)}</b>
+          <small>
+            필기시험 · ${esc(state.settings.targetDate)}
+          </small>
+        </div>
       </div>
-    </div>
-  </div>`;
+    </div>`;
 }
 
 function dashboard(){
@@ -685,18 +495,16 @@ function dashboard(){
   let overall=percent(solved(),goal());
 
   let subjects=sub().map(s=>{
-    let n=sessions(s);
-    let g=sessionGoal(s);
-
+    let n=sessions(s),g=sessionGoal(s);
     return `
-    <div class="subject">
-      <b>${esc(s)}</b>
-      ${bar(percent(n,g))}
-      <small>
-        ${fmt1(n)} / ${fmt1(g)}회분
-        · ${percent(n,g).toFixed(1)}%
-      </small>
-    </div>`;
+      <div class="subject">
+        <b>${esc(s)}</b>
+        ${bar(percent(n,g))}
+        <small>
+          ${fmt1(n)} / ${fmt1(g)}회분
+          · ${percent(n,g).toFixed(1)}%
+        </small>
+      </div>`;
   }).join('');
 
   let recent=entries()
@@ -721,9 +529,7 @@ function dashboard(){
       <div class="metric">
         <small>당일 학습 진도율</small>
         <div class="big">${rate.toFixed(1)}%</div>
-        <small>
-          ${fmt(count)} / ${fmt(dayGoal())}문항
-        </small>
+        <small>${fmt(count)} / ${fmt(dayGoal())}문항</small>
       </div>
 
       <div class="metric">
@@ -748,24 +554,17 @@ function dashboard(){
         <h2>전체 달성률</h2>
         <b>${overall.toFixed(2)}%</b>
       </div>
-
       ${bar(overall)}
-
       <div class="row">
-        <b>
-          ${fmt(solved())} / ${fmt(goal())}문항
-        </b>
+        <b>${fmt(solved())} / ${fmt(goal())}문항</b>
         <span class="muted">
-          남은 ${
-            fmt(Math.max(0,goal()-solved()))
-          }문항
+          남은 ${fmt(Math.max(0,goal()-solved()))}문항
         </span>
       </div>
-
       <div class="note">
-        1회독 ${fmt(totalBase())}문항 ·
-        목표 ${state.settings.rounds}회독 ·
-        남은 기간 하루 ${
+        1회독 ${fmt(totalBase())}문항
+        · 목표 ${state.settings.rounds}회독
+        · 남은 기간 하루 ${
           fmt(daysLeft()
             ?Math.ceil(
               Math.max(0,goal()-solved())/daysLeft()
@@ -890,6 +689,7 @@ function logView(){
 
       <form id="logForm" class="form"
         style="margin-top:12px">
+
         <div class="field">
           <label>날짜</label>
           <input id="logDate" type="date"
@@ -918,8 +718,7 @@ function logView(){
           <label>푼 문항 수</label>
           <input id="logCount" type="number"
             min="1" max="10000"
-            value="${chosen?.questions||20}"
-            required>
+            value="${chosen?.questions||20}" required>
         </div>
 
         <div class="field">
@@ -1300,9 +1099,12 @@ function costView(){
 function settingsView(){
   let s=state.settings;
 
-  let old=!!localStorage.getItem(
-    'exam-15round-planner-v3'
-  );
+  let old=false;
+  try{
+    old=!!localStorage.getItem(
+      'exam-15round-planner-v3'
+    );
+  }catch(e){}
 
   show('설정 · 클라우드 백업',`
     <section class="card">
@@ -1459,7 +1261,6 @@ function go(t){
 
 async function safeRun(task){
   if(busy)return;
-
   busy=true;
   setStatus('저장 중...');
 
@@ -1534,7 +1335,6 @@ async function initializeUser(){
   if(s.exists())return;
 
   let batch=writeBatch(fire);
-
   batch.set(r.settings,defaults());
 
   for(let p of defaultPapers()){
@@ -1566,7 +1366,6 @@ async function addEntry(){
   let date=$('logDate').value;
   let count=Number($('logCount').value);
   let raw=$('logCorrect').value;
-
   let correct=raw===''?null:Number(raw);
 
   if(
@@ -1667,11 +1466,9 @@ function normalizeBackup(x){
 
   const cleanId=id=>{
     let s=String(id||uid());
-
     if(s.includes('/')||s.length>200){
       throw Error('잘못된 기록 ID');
     }
-
     return s;
   };
 
@@ -1720,9 +1517,7 @@ function normalizeBackup(x){
     };
   });
 
-  rr=rr.filter(
-    d=>Number.isFinite(dayNum(d))
-  );
+  rr=rr.filter(d=>Number.isFinite(dayNum(d)));
 
   return {
     settings,
@@ -1732,12 +1527,15 @@ function normalizeBackup(x){
   };
 }
 
-async function restoreCloud(data){
+async function restoreCloud(data,{confirmed=false}={}){
   let normalized=normalizeBackup(data);
 
-  if(!confirm(
-    '현재 클라우드의 모든 기록을 이 백업으로 교체할까요? 두 기기에 모두 반영됩니다.'
-  ))return;
+  if(
+    !confirmed &&
+    !confirm(
+      '현재 클라우드의 모든 기록을 이 백업으로 교체할까요? 두 기기에 모두 반영됩니다.'
+    )
+  )return;
 
   let r=refs();
 
@@ -1766,7 +1564,6 @@ async function restoreCloud(data){
 
   for(let p of normalized.papers){
     let {id,...data}=p;
-
     ops.push({
       kind:'set',
       ref:doc(r.papers,id),
@@ -1776,7 +1573,6 @@ async function restoreCloud(data){
 
   for(let e of normalized.entries){
     let {id,...data}=e;
-
     ops.push({
       kind:'set',
       ref:doc(r.entries,id),
@@ -1809,39 +1605,35 @@ async function restoreCloud(data){
   alert('클라우드 복원이 완료되었습니다.');
 }
 
-$('loginForm').addEventListener(
-  'submit',
-  async e=>{
-    e.preventDefault();
+$('loginForm').addEventListener('submit',async e=>{
+  e.preventDefault();
 
-    if(!auth){
-      $('loginMessage').textContent=
-        'Firebase 설정을 먼저 완료하세요.';
-      return;
-    }
-
-    let btn=e.target.querySelector('button');
-    btn.disabled=true;
-
-    $('loginMessage').textContent='로그인 중...';
-
-    try{
-      await signInWithEmailAndPassword(
-        auth,
-        $('email').value.trim(),
-        $('password').value
-      );
-    }catch(err){
-      $('loginMessage').textContent=
-        '로그인 실패: '+
-        (err.code==='auth/invalid-credential'
-          ?'이메일 또는 비밀번호를 확인하세요.'
-          :err.message);
-    }finally{
-      btn.disabled=false;
-    }
+  if(!auth){
+    $('loginMessage').textContent=
+      'Firebase 설정을 먼저 완료하세요.';
+    return;
   }
-);
+
+  let btn=e.target.querySelector('button');
+  btn.disabled=true;
+  $('loginMessage').textContent='로그인 중...';
+
+  try{
+    await signInWithEmailAndPassword(
+      auth,
+      $('email').value.trim(),
+      $('password').value
+    );
+  }catch(err){
+    $('loginMessage').textContent=
+      '로그인 실패: '+
+      (err.code==='auth/invalid-credential'
+        ?'이메일 또는 비밀번호를 확인하세요.'
+        :err.message);
+  }finally{
+    btn.disabled=false;
+  }
+});
 
 $('logout').addEventListener(
   'click',
@@ -1868,7 +1660,9 @@ document.addEventListener('click',e=>{
   if(d.remove){
     if(confirm('이 풀이 기록을 삭제할까요?')){
       safeRun(
-        ()=>deleteDoc(doc(refs().entries,d.remove))
+        ()=>deleteDoc(
+          doc(refs().entries,d.remove)
+        )
       );
     }
     return;
@@ -1896,7 +1690,8 @@ document.addEventListener('click',e=>{
       !Number.isInteger(+y)||
       +y<1990||+y>2100
     ){
-      return alert('입력값을 확인하세요.');
+      alert('입력값을 확인하세요.');
+      return;
     }
 
     safeRun(
@@ -1976,9 +1771,12 @@ document.addEventListener('click',e=>{
   }
 
   if('migrate'in d){
-    let raw=localStorage.getItem(
-      'exam-15round-planner-v3'
-    );
+    let raw=null;
+    try{
+      raw=localStorage.getItem(
+        'exam-15round-planner-v3'
+      );
+    }catch(e){}
 
     if(raw){
       safeRun(
@@ -2004,7 +1802,7 @@ document.addEventListener('click',e=>{
           papers:defaultPapers(),
           entries:[],
           restDates:[]
-        });
+        },{confirmed:true});
       }
     );
     return;
@@ -2171,56 +1969,47 @@ document.addEventListener('submit',e=>{
   });
 });
 
-if(
-  firebaseConfig.apiKey.startsWith('여기에_')||
-  firebaseConfig.projectId.startsWith('여기에_')
-){
+try{
+  const app=initializeApp(firebaseConfig);
+
+  auth=getAuth(app);
+  fire=getFirestore(app);
+
+  onAuthStateChanged(auth,async u=>{
+    clearListening();
+    user=u;
+
+    if(!u){
+      showLogin();
+      return;
+    }
+
+    showApp();
+    setStatus('초기 데이터 확인 중...');
+
+    try{
+      await initializeUser();
+
+      if(auth.currentUser?.uid===u.uid){
+        startListening();
+      }
+    }catch(err){
+      console.error(err);
+      setStatus('연결 오류');
+
+      $('view').innerHTML=`
+        <div class="card">
+          Firestore 연결 실패:
+          보안 규칙과 데이터베이스 생성 여부를
+          확인하세요.
+        </div>`;
+    }
+  });
+
+}catch(err){
   showLogin(
-    '먼저 index.html의 firebaseConfig를 본인 프로젝트 값으로 교체하세요.'
+    'Firebase 설정 오류: '+err.message
   );
-}else{
-  try{
-    const app=initializeApp(firebaseConfig);
-
-    auth=getAuth(app);
-    fire=getFirestore(app);
-
-    onAuthStateChanged(auth,async u=>{
-      clearListening();
-      user=u;
-
-      if(!u){
-        showLogin();
-        return;
-      }
-
-      showApp();
-      setStatus('초기 데이터 확인 중...');
-
-      try{
-        await initializeUser();
-
-        if(auth.currentUser?.uid===u.uid){
-          startListening();
-        }
-      }catch(err){
-        console.error(err);
-        setStatus('연결 오류');
-
-        $('view').innerHTML=`
-          <div class="card">
-            Firestore 연결 실패:
-            보안 규칙과 데이터베이스 생성 여부를
-            확인하세요.
-          </div>`;
-      }
-    });
-
-  }catch(err){
-    showLogin(
-      'Firebase 설정 오류: '+err.message
-    );
-  }
 }
 </script>
 </body>
