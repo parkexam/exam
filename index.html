@@ -1,1027 +1,2227 @@
 
-<!DOCTYPE html>
+<!doctype html>
 <html lang="ko">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
 <title>2027년 공무원 시험합격</title>
 <style>
-:root{--navy:#172d4a;--blue:#346fe2;--bg:#f4f7fb;--line:#e2e8f1;--ink:#20334e;--muted:#708199;--green:#148367;--red:#c84d5c}
+:root {
+  --navy:#183251;
+  --blue:#326cdb;
+  --bg:#f4f7fb;
+  --ink:#23344c;
+  --line:#e0e7f0;
+  --muted:#718198;
+  --green:#178366;
+  --red:#c84e5b;
+}
 *{box-sizing:border-box}
-body{margin:0;background:var(--bg);color:var(--ink);font:14px/1.6 system-ui,'Malgun Gothic',sans-serif}
+body{
+  margin:0;background:var(--bg);color:var(--ink);
+  font:14px/1.55 system-ui,"Malgun Gothic",sans-serif
+}
 button,input,select{font:inherit}
 button{cursor:pointer}
+button:disabled{opacity:.55;cursor:wait}
 h1,h2,h3,p{margin:0}
 h1{font-size:23px}
 h2{font-size:18px;margin-bottom:12px}
-h3{font-size:15px;margin-bottom:8px}
-.app{display:flex;min-height:100vh}
-.side{width:220px;flex-shrink:0;background:var(--navy);color:white;padding:24px 14px}
-.brand{font-size:20px;font-weight:800;padding:8px 10px 24px}
-.brand small{display:block;font-size:11px;color:#b6c9e4;margin-top:8px}
+h3{font-size:15px;margin-bottom:9px}
+small,.muted{color:var(--muted)}
+.layout{display:flex;min-height:100vh}
+.sidebar{
+  background:var(--navy);color:white;
+  width:225px;flex-shrink:0;padding:22px 13px
+}
+.brand{
+  font-size:19px;font-weight:800;
+  padding:10px 9px 24px;line-height:1.35
+}
+.brand small{
+  display:block;color:#bbcee8;
+  font-size:11px;margin-top:9px
+}
 .nav{display:grid;gap:6px}
-.nav button{border:0;background:transparent;color:#c7d6ea;padding:12px;text-align:left;border-radius:9px;font-weight:700}
-.nav button.active,.nav button:hover{background:#345174;color:white}
-.main{flex:1;min-width:0;max-width:1320px;padding:28px;margin:auto}
-.top{display:flex;justify-content:space-between;gap:12px;align-items:center;margin-bottom:18px}
-.top small,.muted{color:var(--muted)}
-.hero{background:linear-gradient(115deg,#1b3555,#315d9c);color:white;border-radius:18px;padding:22px;display:flex;justify-content:space-between;gap:16px;align-items:center}
-.hero p{color:#d4e1f5;font-size:12px}
-.countdowns{display:flex;gap:10px}
-.count{background:#ffffff18;padding:12px 14px;border-radius:12px;min-width:133px;text-align:center}
-.count b{display:block;font-size:30px;line-height:1.25}
-.count small{font-size:11px;color:#e1eaf8}
-.count.apply b{color:#ffdb95}
-.grid3,.grid2{display:grid;gap:13px;margin-top:14px}
+.nav button{
+  border:0;background:transparent;color:#c7d7eb;
+  text-align:left;padding:12px;border-radius:9px;font-weight:700
+}
+.nav button.active,.nav button:hover{
+  background:#38577c;color:white
+}
+.main{
+  width:100%;max-width:1240px;
+  margin:auto;padding:28px;min-width:0
+}
+.top{
+  display:flex;justify-content:space-between;
+  gap:12px;align-items:center;margin-bottom:18px
+}
+.top small{color:var(--muted)}
+.card,.metric{
+  background:white;border:1px solid var(--line);
+  border-radius:15px;padding:18px;margin-top:14px
+}
+.metric{margin:0}
+.grid3,.grid2{display:grid;gap:12px;margin-top:14px}
 .grid3{grid-template-columns:repeat(3,minmax(0,1fr))}
 .grid2{grid-template-columns:repeat(2,minmax(0,1fr))}
-.card,.metric{background:white;border:1px solid var(--line);border-radius:15px;padding:19px;margin-top:15px}
-.metric{margin:0}
-.metric small{color:var(--muted);font-weight:700}
-.big{font-size:28px;font-weight:850;line-height:1.5}
-.money{font-size:24px}
-.pos{color:var(--green)}
-.neg{color:var(--red)}
-.progress{height:11px;background:#e8eef7;border-radius:99px;overflow:hidden;margin:10px 0}
-.progress i{display:block;height:100%;background:linear-gradient(90deg,#3473e8,#83a7f4);border-radius:99px}
-.subjects{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:11px}
-.subject{border:1px solid var(--line);border-radius:11px;padding:12px}
-.subject small{color:var(--muted)}
-.row{display:flex;align-items:center;justify-content:space-between;gap:10px;flex-wrap:wrap}
-.btn{border:1px solid #d7e0ed;border-radius:9px;padding:9px 12px;background:white;color:#28466c;font-weight:750}
-.btn.primary{background:var(--blue);border-color:var(--blue);color:white}
+.metric small{font-weight:750}
+.big{font-size:28px;font-weight:850;line-height:1.4}
+.big.money{font-size:23px}
+.positive{color:var(--green)}
+.negative{color:var(--red)}
+.hero{
+  background:linear-gradient(115deg,#193654,#3562a1);
+  color:white;border-radius:16px;padding:21px;
+  display:flex;justify-content:space-between;
+  gap:12px;align-items:center
+}
+.hero p{color:#d4e1f4;font-size:12px}
+.countdowns{display:flex;gap:10px}
+.count{
+  background:#ffffff19;border-radius:11px;
+  padding:11px;text-align:center;min-width:133px
+}
+.count b{display:block;font-size:28px;line-height:1.3}
+.count small{font-size:11px;color:#e0eafa}
+.count.application b{color:#ffda91}
+.progress{
+  height:11px;background:#e7edf5;
+  border-radius:99px;overflow:hidden;margin:10px 0
+}
+.progress i{
+  height:100%;display:block;
+  background:#4b82e8;border-radius:99px
+}
+.subjects{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(175px,1fr));
+  gap:10px
+}
+.subject{
+  border:1px solid var(--line);
+  border-radius:11px;padding:12px
+}
+.subject small{font-size:12px}
+.row{
+  display:flex;align-items:center;
+  justify-content:space-between;gap:10px;flex-wrap:wrap
+}
+.btn{
+  border:1px solid #d4dfed;border-radius:9px;
+  padding:9px 12px;background:white;
+  color:#315171;font-weight:750
+}
+.btn.primary{
+  background:var(--blue);color:white;
+  border-color:var(--blue)
+}
 .btn.danger{color:var(--red)}
-.btn.sm{padding:5px 8px;font-size:12px}
-.form{display:grid;grid-template-columns:repeat(auto-fit,minmax(175px,1fr));gap:12px}
+.btn.small{padding:5px 8px;font-size:12px}
+.form{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(170px,1fr));
+  gap:12px
+}
 .field{display:flex;flex-direction:column;gap:5px}
-.field label{font-weight:750;font-size:12px;color:#586d88}
-.field input,.field select{padding:10px;border:1px solid #d5e0ed;border-radius:9px;width:100%;background:white;min-width:0}
-.note{background:#f0f5fd;color:#516985;padding:12px;border-radius:10px;font-size:12px;margin-top:12px}
-.warn{background:#fff5e6;color:#825b25}
-.list{display:grid;gap:8px}
-.item{display:flex;justify-content:space-between;gap:10px;align-items:center;border-bottom:1px solid #edf1f5;padding:8px 0}
+.field label{
+  font-weight:750;font-size:12px;color:#60738b
+}
+.field input,.field select{
+  padding:10px;width:100%;min-width:0;
+  border:1px solid #d7e1ed;
+  border-radius:9px;background:white
+}
+.note{
+  background:#eef4fc;border-radius:10px;
+  padding:12px;color:#506b89;
+  font-size:12px;margin-top:12px
+}
+.warn{background:#fff5e8;color:#855c22}
+.list{display:grid;gap:6px}
+.item{
+  display:flex;justify-content:space-between;
+  gap:10px;align-items:center;
+  padding:8px 0;border-bottom:1px solid #eef2f7
+}
 .item:last-child{border:0}
 .tablewrap{overflow:auto}
-table{border-collapse:collapse;width:100%;font-size:12px}
-td,th{border-bottom:1px solid #edf1f5;padding:10px;text-align:left;white-space:nowrap}
-th{color:#718098}
-.calendar{display:grid;grid-template-columns:repeat(auto-fit,minmax(245px,1fr));gap:12px}
-.month{border:1px solid var(--line);border-radius:12px;padding:12px}
-.days{display:grid;grid-template-columns:repeat(7,minmax(0,1fr));gap:3px}
-.day{aspect-ratio:1.1;border:0;border-radius:6px;background:#e5efff;color:#3665a7;font-size:11px;padding:0}
-.day.head,.day.blank{background:transparent;color:#7b8da3}
-.day.past{background:#e8ebf0;color:#9ca6b3}
-.day.done{background:#ccefe1;color:#0e7050}
-.day.partial{background:#fff0d6;color:#916018}
-.day.exam{background:#d64f61;color:white;font-weight:900}
-.day.today{outline:2px solid #275fc9;outline-offset:-2px}
-.day.apply{box-shadow:inset 0 0 0 3px #e8a12b;font-weight:900}
-.day.rest{background:#f1edf8;color:#887c9d}
-.legend{display:flex;gap:14px;flex-wrap:wrap;margin:12px 0;color:var(--muted);font-size:12px}
-.dot{display:inline-block;width:10px;height:10px;border-radius:2px;margin-right:5px}
-.foot{margin-top:18px;color:var(--muted);font-size:12px}
+table{width:100%;border-collapse:collapse;font-size:12px}
+td,th{
+  text-align:left;padding:10px;
+  border-bottom:1px solid #e9eef5;
+  white-space:nowrap
+}
+th{color:var(--muted)}
+.calendar{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(235px,1fr));
+  gap:12px
+}
+.month{
+  border:1px solid var(--line);
+  border-radius:11px;padding:12px
+}
+.days{
+  display:grid;
+  grid-template-columns:repeat(7,minmax(0,1fr));
+  gap:3px
+}
+.day{
+  height:29px;border:0;border-radius:5px;
+  background:#e4efff;color:#3866aa;
+  font-size:11px;padding:0
+}
+.day.head,.day.blank{
+  background:transparent;color:#8595a9
+}
+.day.past{background:#e7eaf0;color:#9ba5b3}
+.day.done{background:#cceede;color:#137252}
+.day.partial{background:#ffedcc;color:#926119}
+.day.rest{background:#efebf7;color:#8a79a0}
+.day.exam{
+  background:#d95565;color:white;font-weight:900
+}
+.day.today{
+  outline:2px solid #285fcc;outline-offset:-2px
+}
+.day.apply{
+  box-shadow:inset 0 0 0 3px #e9a325;
+  font-weight:900
+}
+.legend{
+  display:flex;gap:12px;flex-wrap:wrap;
+  color:var(--muted);font-size:12px;margin:12px 0
+}
+.dot{
+  display:inline-block;width:10px;height:10px;
+  border-radius:2px;margin-right:4px
+}
+.status{
+  font-size:12px;color:#bcd0e8;padding:10px
+}
+.login-wrap{
+  max-width:440px;margin:10vh auto;padding:16px
+}
+.login-wrap .card{padding:26px}
+.login-wrap .field{margin-top:12px}
+.login-wrap button{width:100%;margin-top:16px}
 .hidden{display:none!important}
-@media(max-width:780px){
-.app{display:block}
-.side{width:auto;padding:12px}
-.brand{font-size:17px;padding:3px 5px 9px}
-.brand small{display:none}
-.nav{display:flex;overflow:auto;gap:5px}
-.nav button{white-space:nowrap;font-size:12px;padding:9px}
-.main{padding:14px}
-.hero{flex-direction:column;align-items:stretch}
-.countdowns{width:100%}
-.count{flex:1;min-width:0;padding:10px 5px}
-.count b{font-size:25px}
-.count small{font-size:10px}
-.grid3{gap:7px}
-.metric{padding:11px 8px}
-.metric small{font-size:10px}
-.big{font-size:21px}
-.money{font-size:15px}
-.grid2{grid-template-columns:1fr}
-.card{padding:15px}
-.top h1{font-size:20px}
+.foot{
+  color:var(--muted);font-size:12px;margin-top:18px
+}
+@media(max-width:800px){
+  .layout{display:block}
+  .sidebar{width:auto;padding:11px}
+  .brand{font-size:17px;padding:3px 5px 10px}
+  .brand small{display:none}
+  .nav{display:flex;overflow:auto}
+  .nav button{
+    white-space:nowrap;font-size:12px;padding:9px
+  }
+  .main{padding:14px}
+  .hero{flex-direction:column;align-items:stretch}
+  .countdowns{width:100%}
+  .count{flex:1;min-width:0}
+  .count b{font-size:24px}
+  .grid3{gap:7px}
+  .metric{padding:11px 8px}
+  .metric small{font-size:10px}
+  .big{font-size:21px}
+  .big.money{font-size:15px}
+  .grid2{grid-template-columns:1fr}
 }
 </style>
 </head>
 <body>
-<div class="app">
-<aside class="side">
-<div class="brand">
-📚 2027년 공무원 시험합격
-<small>2027.06.19 필기시험 · 15회독 목표</small>
+
+<div id="login" class="login-wrap">
+  <div class="card">
+    <h1>📚 2027년 공무원 시험합격</h1>
+    <p class="muted" style="margin-top:8px">
+      배우자와 함께 쓰는 실시간 학습 플래너
+    </p>
+    <form id="loginForm">
+      <div class="field">
+        <label for="email">Firebase 로그인 이메일</label>
+        <input id="email" type="email"
+          autocomplete="username" required>
+      </div>
+      <div class="field">
+        <label for="password">비밀번호</label>
+        <input id="password" type="password"
+          autocomplete="current-password" required>
+      </div>
+      <button class="btn primary" type="submit">
+        로그인
+      </button>
+    </form>
+    <p id="loginMessage" class="note">
+      Firebase 설정 후 로그인할 수 있습니다.
+    </p>
+  </div>
 </div>
-<nav id="nav" class="nav"></nav>
-</aside>
-<main class="main">
-<div id="view"></div>
-<p class="foot">● 학습 기록은 현재 브라우저에 자동 저장됩니다. 가상 손익은 실제 금전적 손익이 아닙니다.</p>
-</main>
+
+<div id="app" class="layout hidden">
+  <aside class="sidebar">
+    <div class="brand">
+      📚 2027년 공무원 시험합격
+      <small>부부 공동 학습 플래너</small>
+    </div>
+    <nav id="nav" class="nav"></nav>
+    <div id="syncStatus" class="status">
+      연결 중...
+    </div>
+    <button id="logout" class="btn small"
+      style="margin:6px 10px">
+      로그아웃
+    </button>
+  </aside>
+  <main class="main">
+    <div id="view"></div>
+    <p class="foot">
+      학습 기록은 Firebase에 저장됩니다.
+      가상 손익은 실제 수익·손실이 아닙니다.
+    </p>
+  </main>
 </div>
-<script>
-'use strict';
 
-const KEY='exam-15round-planner-v3';
-const APPLICATION='2027-03-22';
+<script type="module">
+import {initializeApp}
+from 'https://www.gstatic.com/firebasejs/11.10.0/firebase-app.js';
 
-const SUBJECTS={
- nurse:['국어','영어','지역사회간호','간호관리','LEET 추리논증'],
- admin:['국어','영어','행정법','행정학','LEET 추리논증']
-};
-const ALL=[...new Set([...SUBJECTS.nurse,...SUBJECTS.admin])];
-const $=id=>document.getElementById(id);
-
-const today=()=>{
- let d=new Date();
- return [
-  d.getFullYear(),
-  String(d.getMonth()+1).padStart(2,'0'),
-  String(d.getDate()).padStart(2,'0')
- ].join('-');
-};
-
-const numDate=s=>{
- let d=new Date(s+'T12:00:00');
- return /^\d{4}-\d\d-\d\d$/.test(s||'') &&
- !isNaN(d) &&
- d.toISOString().slice(0,10)===s
- ? Date.UTC(d.getFullYear(),d.getMonth(),d.getDate())/86400000
- : NaN;
-};
-
-const diff=(a,b)=>numDate(b)-numDate(a);
-const dateFrom=n=>new Date(n*86400000).toISOString().slice(0,10);
-const dd=s=>{
- let d=diff(today(),s);
- return d>0?'D-'+d:d===0?'D-DAY':'D+'+(-d);
-};
-const fmt=n=>Math.round(n).toLocaleString('ko-KR');
-const fmt1=n=>Number(n).toLocaleString('ko-KR',{maximumFractionDigits:1});
-const money=n=>(n>0?'+':n<0?'−':'')+fmt(Math.abs(n))+'원';
-const esc=s=>String(s??'').replace(/[&<>"']/g,c=>({
- '&':'&amp;','<':'&lt;','>':'&gt;',
- '"':'&quot;',"'":'&#39;'
-}[c]));
-const uid=()=>Math.random().toString(36).slice(2)+Date.now().toString(36);
-
-function makePapers(){
- let a=[];
- const add=(subject,year,type,questions)=>
-  a.push({id:uid(),subject,year,type,questions});
-
- for(let y=2016;y<=2026;y++){
-  for(let s of ['국어','영어']){
-   add(s,y,'국가직 9급',20);
-   add(s,y,'지방직 9급',20);
-  }
-  for(let s of ['지역사회간호','간호관리','행정법','행정학']){
-   add(s,y,'연도별 기출',20);
-  }
- }
- for(let y=2021;y<=2026;y++){
-  add('LEET 추리논증',y,'추리논증',40);
- }
- return a;
+import {
+  getAuth,
+  signInWithEmailAndPassword,
+  onAuthStateChanged,
+  signOut
 }
+from 'https://www.gstatic.com/firebasejs/11.10.0/firebase-auth.js';
 
-function defaults(){
- return {
-  version:3,
+import {
+  getFirestore,
+  doc,
+  collection,
+  getDoc,
+  getDocs,
+  setDoc,
+  deleteDoc,
+  writeBatch,
+  onSnapshot
+}
+from 'https://www.gstatic.com/firebasejs/11.10.0/firebase-firestore.js';
+
+// ★ 본인의 Firebase 설정값으로 교체하세요.
+const firebaseConfig = {
+  apiKey: '여기에_API_KEY',
+  authDomain: '여기에_PROJECT_ID.firebaseapp.com',
+  projectId: '여기에_PROJECT_ID',
+  storageBucket: '여기에_STORAGE_BUCKET',
+  messagingSenderId: '여기에_MESSAGING_SENDER_ID',
+  appId: '여기에_APP_ID'
+};
+
+const SUBJECTS = {
+  nurse:[
+    '국어','영어','지역사회간호',
+    '간호관리','LEET 추리논증'
+  ],
+  admin:[
+    '국어','영어','행정법',
+    '행정학','LEET 추리논증'
+  ]
+};
+
+const ALL = [...new Set([
+  ...SUBJECTS.nurse,...SUBJECTS.admin
+])];
+
+const $ = id => document.getElementById(id);
+
+const esc = s => String(s ?? '').replace(
+  /[&<>"']/g,
+  c => ({
+    '&':'&amp;',
+    '<':'&lt;',
+    '>':'&gt;',
+    '"':'&quot;',
+    "'":'&#39;'
+  }[c])
+);
+
+const fmt = n =>
+  Math.round(n).toLocaleString('ko-KR');
+
+const fmt1 = n =>
+  Number(n).toLocaleString('ko-KR',{
+    maximumFractionDigits:1
+  });
+
+const money = n =>
+  (n>0?'+':n<0?'−':'')+
+  fmt(Math.abs(n))+'원';
+
+const uid = () => crypto.randomUUID();
+
+const today = () => {
+  let d=new Date();
+  return `${d.getFullYear()}-${
+    String(d.getMonth()+1).padStart(2,'0')
+  }-${String(d.getDate()).padStart(2,'0')}`;
+};
+
+const dayNum = s => {
+  if(!/^\d{4}-\d{2}-\d{2}$/.test(s||''))return NaN;
+  let [y,m,d]=s.split('-').map(Number);
+  let n=Date.UTC(y,m-1,d);
+  let t=new Date(n);
+
+  return t.getUTCFullYear()===y &&
+    t.getUTCMonth()===m-1 &&
+    t.getUTCDate()===d
+    ? n/86400000 : NaN;
+};
+
+const diff = (a,b) => dayNum(b)-dayNum(a);
+
+const fromDay = n =>
+  new Date(n*86400000).toISOString().slice(0,10);
+
+const dday = s => {
+  let n=diff(today(),s);
+  return n>0?'D-'+n:
+    n===0?'D-DAY':'D+'+(-n);
+};
+
+const defaults = () => ({
   mode:'nurse',
   startDate:today(),
   targetDate:'2027-06-19',
-  isOfficialExamDate:true,
+  applicationDate:'2027-03-22',
   rounds:15,
   monthlySalary:220,
   monthlyChildcare:0,
   pastYears:0,
   pastAnnualCost:0,
-  futureAnnualCost:100,
-  papers:makePapers(),
-  entries:[],
-  restDates:[]
- };
-}
+  futureAnnualCost:100
+});
 
-let db;
-try{
- db=JSON.parse(localStorage.getItem(KEY));
-}catch(e){}
+const defaultPapers = () => {
+  let a=[];
 
-if(!db||db.version!==3||!Array.isArray(db.papers)||!Array.isArray(db.entries)){
- db=defaults();
-}
-if(!Array.isArray(db.restDates))db.restDates=[];
+  for(let y=2016;y<=2026;y++){
+    for(let s of ['국어','영어']){
+      for(let type of ['국가직 9급','지방직 9급']){
+        a.push({
+          id:`p-${s}-${y}-${type}`,
+          subject:s,
+          year:y,
+          type,
+          questions:20
+        });
+      }
+    }
 
-const save=()=>{
- try{
-  localStorage.setItem(KEY,JSON.stringify(db));
- }catch(e){
-  alert('저장에 실패했습니다. JSON 백업을 이용해 주세요.');
- }
+    for(let s of [
+      '지역사회간호','간호관리',
+      '행정법','행정학'
+    ]){
+      a.push({
+        id:`p-${s}-${y}-기출`,
+        subject:s,
+        year:y,
+        type:'연도별 기출',
+        questions:20
+      });
+    }
+  }
+
+  for(let y=2021;y<=2026;y++){
+    a.push({
+      id:`p-LEET-${y}`,
+      subject:'LEET 추리논증',
+      year:y,
+      type:'추리논증',
+      questions:40
+    });
+  }
+
+  return a;
 };
 
-const subs=()=>SUBJECTS[db.mode]||SUBJECTS.nurse;
-const papers=()=>db.papers.filter(p=>subs().includes(p.subject));
-const entries=()=>db.entries.filter(e=>subs().includes(e.subject));
-const totalBase=()=>papers().reduce((n,p)=>n+Number(p.questions||0),0);
-const goal=()=>totalBase()*Number(db.rounds||15);
-const solved=()=>entries().reduce((n,e)=>n+Number(e.count||0),0);
-const onDay=s=>entries().filter(e=>e.date===s).reduce((n,e)=>n+Number(e.count||0),0);
-const planDays=()=>Math.max(1,diff(db.startDate,db.targetDate)||1);
-const dayGoal=()=>Math.max(1,Math.ceil(goal()/planDays()));
-const daysLeft=()=>Math.max(0,diff(today(),db.targetDate));
-const dailyBase=()=>Math.max(
- 0,
- Number(db.monthlySalary||0)-Number(db.monthlyChildcare||0)
-)*10000/30;
-const rest=s=>db.restDates.includes(s);
-const activeDay=s=>numDate(s)>=numDate(db.startDate)&&numDate(s)<numDate(db.targetDate);
-const dailyProfit=s=>!activeDay(s)||rest(s)
- ? 0
- : Math.round(dailyBase()*(onDay(s)/dayGoal()-1));
-
-function cumulative(){
- let a=numDate(db.startDate);
- let b=Math.min(numDate(today()),numDate(db.targetDate)-1);
- let sum=0;
- if(!Number.isFinite(a)||!Number.isFinite(b))return 0;
- for(let i=a;i<=b&&i<a+3650;i++){
-  sum+=dailyProfit(dateFrom(i));
- }
- return sum;
-}
-
-const pct=(n,d)=>d?100*n/d:0;
-const bar=p=>`<div class="progress"><i style="width:${Math.max(0,Math.min(100,p))}%"></i></div>`;
-
-function sessions(s){
- let m=new Map(db.papers.map(p=>[p.id,p]));
- return db.entries.filter(e=>e.subject===s).reduce(
-  (sum,e)=>sum+Number(e.count||0)/
-  (Number(m.get(e.paperId)?.questions)||(s==='LEET 추리논증'?40:20)),
-  0
- );
-}
-const sessionGoal=s=>db.papers.filter(p=>p.subject===s).length*db.rounds;
-
+let auth,fire,user=null;
 let tab='dashboard';
-let chosenSubject='국어';
-let chosenPaper='';
-let chosenDate=today();
+let unsubs=[];
+let ready={};
+let busy=false;
+
+let state={
+  settings:defaults(),
+  papers:[],
+  entries:[],
+  rests:[]
+};
+
+let selectedSubject='국어';
+let selectedPaper='';
+let selectedDate=today();
 let paperFilter='국어';
 
-function showPage(title,content){
- $('nav').innerHTML=[
-  ['dashboard','◫ 대시보드'],
-  ['log','✎ 풀이 기록'],
-  ['calendar','▦ 시험 달력'],
-  ['cost','₩ 기회비용'],
-  ['settings','⚙ 설정·백업']
- ].map(([id,t])=>`
-  <button data-tab="${id}" class="${tab===id?'active':''}">${t}</button>
- `).join('');
+const refs = () => ({
+  settings:doc(
+    fire,'users',user.uid,'settings','main'
+  ),
+  papers:collection(
+    fire,'users',user.uid,'papers'
+  ),
+  entries:collection(
+    fire,'users',user.uid,'entries'
+  ),
+  rests:collection(
+    fire,'users',user.uid,'rests'
+  )
+});
 
- $('view').innerHTML=`
-  <div class="top">
-   <h1>${title}</h1>
-   <small>${today()}</small>
-  </div>
-  ${content}
- `;
-}
+const sub = () =>
+  SUBJECTS[state.settings.mode] || SUBJECTS.nurse;
 
-const hero=()=>`
-<div class="hero">
- <div>
-  <h2 style="margin:0 0 4px">2027년 공무원 시험합격</h2>
-  <p>${db.mode==='nurse'?'간호직':'일반행정직'} · ${db.rounds}회독 목표 · 누적 ${fmt(solved())}문항</p>
- </div>
- <div class="countdowns">
-  <div class="count apply">
-   <b>${dd(APPLICATION)}</b>
-   <small>원서접수 · 2027.03.22</small>
-  </div>
-  <div class="count">
-   <b>${dd(db.targetDate)}</b>
-   <small>필기시험 · ${esc(db.targetDate)}</small>
-  </div>
- </div>
+const papers = () =>
+  state.papers.filter(
+    p=>sub().includes(p.subject)
+  );
+
+const entries = () =>
+  state.entries.filter(
+    e=>sub().includes(e.subject)
+  );
+
+const totalBase = () =>
+  papers().reduce(
+    (n,p)=>n+Number(p.questions||0),0
+  );
+
+const goal = () =>
+  totalBase()*Number(state.settings.rounds||15);
+
+const solved = () =>
+  entries().reduce(
+    (n,e)=>n+Number(e.count||0),0
+  );
+
+const onDay = s =>
+  entries()
+    .filter(e=>e.date===s)
+    .reduce((n,e)=>n+Number(e.count||0),0);
+
+const planDays = () =>
+  Math.max(1,diff(
+    state.settings.startDate,
+    state.settings.targetDate
+  )||1);
+
+const dayGoal = () =>
+  Math.max(1,Math.ceil(goal()/planDays()));
+
+const daysLeft = () =>
+  Math.max(0,diff(
+    today(),state.settings.targetDate
+  ));
+
+const baseMoney = () =>
+  Math.max(
+    0,
+    Number(state.settings.monthlySalary||0)-
+    Number(state.settings.monthlyChildcare||0)
+  )*10000/30;
+
+const isRest = s => state.rests.includes(s);
+
+const isStudyDay = s =>
+  dayNum(s)>=dayNum(state.settings.startDate) &&
+  dayNum(s)<dayNum(state.settings.targetDate);
+
+const dailyProfit = s =>
+  !isStudyDay(s)||isRest(s)
+    ? 0
+    : Math.round(
+      baseMoney()*(onDay(s)/dayGoal()-1)
+    );
+
+const percent = (n,d) => d?100*n/d:0;
+
+const bar = p => `
+<div class="progress">
+  <i style="width:${
+    Math.min(100,Math.max(0,p))
+  }%"></i>
 </div>`;
 
-function dashboard(){
- let count=onDay(today());
- let rate=pct(count,dayGoal());
- let profit=dailyProfit(today());
- let total=cumulative();
- let overall=pct(solved(),goal());
+const sessions = s => {
+  let map=new Map(
+    state.papers.map(p=>[p.id,p])
+  );
 
- let subhtml=subs().map(s=>{
-  let n=sessions(s),g=sessionGoal(s);
+  return state.entries
+    .filter(e=>e.subject===s)
+    .reduce((n,e)=>n+
+      Number(e.count||0)/
+      Math.max(1,Number(
+        map.get(e.paperId)?.questions ||
+        e.paperQuestions ||
+        (s==='LEET 추리논증'?40:20)
+      )),0);
+};
+
+const sessionGoal = s =>
+  state.papers.filter(
+    p=>p.subject===s
+  ).length*state.settings.rounds;
+
+function cumulative(){
+  let a=dayNum(state.settings.startDate);
+  let b=Math.min(
+    dayNum(today()),
+    dayNum(state.settings.targetDate)-1
+  );
+  let sum=0;
+
+  if(!Number.isFinite(a)||
+     !Number.isFinite(b))return 0;
+
+  for(let i=a;i<=b&&i<a+3650;i++){
+    sum+=dailyProfit(fromDay(i));
+  }
+
+  return sum;
+}
+
+function showLogin(message='전용 계정으로 로그인하세요.'){
+  $('app').classList.add('hidden');
+  $('login').classList.remove('hidden');
+  $('loginMessage').textContent=message;
+}
+
+function showApp(){
+  $('login').classList.add('hidden');
+  $('app').classList.remove('hidden');
+}
+
+function setStatus(s){
+  if($('syncStatus')){
+    $('syncStatus').textContent=s;
+  }
+}
+
+function failure(e){
+  console.error(e);
+  alert('저장 또는 연결 오류: '+(e?.message||e));
+}
+
+function show(title,html){
+  $('nav').innerHTML=[
+    ['dashboard','◫ 대시보드'],
+    ['log','✎ 풀이 기록'],
+    ['calendar','▦ 시험 달력'],
+    ['cost','₩ 기회비용'],
+    ['settings','⚙ 설정·백업']
+  ].map(([id,t])=>`
+    <button data-tab="${id}"
+      class="${tab===id?'active':''}">
+      ${t}
+    </button>
+  `).join('');
+
+  $('view').innerHTML=`
+    <div class="top">
+      <h1>${title}</h1>
+      <small>${today()}</small>
+    </div>
+    ${html}
+  `;
+}
+
+function hero(){
   return `
-  <div class="subject">
-   <b>${esc(s)}</b>
-   ${bar(pct(n,g))}
-   <small>${fmt1(n)} / ${fmt1(g)}회분 · ${pct(n,g).toFixed(1)}%</small>
+  <div class="hero">
+    <div>
+      <h2 style="margin:0 0 4px">
+        2027년 공무원 시험합격
+      </h2>
+      <p>
+        ${
+          state.settings.mode==='nurse'
+          ?'간호직':'일반행정직'
+        }
+        · ${state.settings.rounds}회독 목표
+        · 누적 ${fmt(solved())}문항
+      </p>
+    </div>
+    <div class="countdowns">
+      <div class="count application">
+        <b>${dday(state.settings.applicationDate)}</b>
+        <small>
+          원서접수 ·
+          ${esc(state.settings.applicationDate)}
+        </small>
+      </div>
+      <div class="count">
+        <b>${dday(state.settings.targetDate)}</b>
+        <small>
+          필기시험 ·
+          ${esc(state.settings.targetDate)}
+        </small>
+      </div>
+    </div>
   </div>`;
- }).join('');
+}
 
- let recent=entries().slice()
-  .sort((a,b)=>b.date.localeCompare(a.date))
-  .slice(0,5)
-  .map(e=>`
-   <div class="item">
-    <span>${esc(e.date)} · ${esc(e.subject)} · ${esc(e.year)} ${esc(e.type)}</span>
-    <b>+${fmt(e.count)}문항</b>
-   </div>
-  `).join('')||'<p class="muted">아직 기록이 없습니다.</p>';
+function dashboard(){
+  let count=onDay(today());
+  let rate=percent(count,dayGoal());
+  let profit=dailyProfit(today());
+  let total=cumulative();
+  let overall=percent(solved(),goal());
 
- showPage('오늘의 공부 현황',`
- ${hero()}
- <div class="grid3">
-  <div class="metric">
-   <small>당일 학습 진도율</small>
-   <div class="big">${rate.toFixed(1)}%</div>
-   <small>${fmt(count)} / ${fmt(dayGoal())}문항</small>
-  </div>
-  <div class="metric">
-   <small>일일 가상 손익</small>
-   <div class="big money ${profit<0?'neg':'pos'}">${money(profit)}</div>
-   <small>오늘 목표 대비</small>
-  </div>
-  <div class="metric">
-   <small>누적 가상 손익</small>
-   <div class="big money ${total<0?'neg':'pos'}">${money(total)}</div>
-   <small>공부 시작일부터</small>
-  </div>
- </div>
+  let subjects=sub().map(s=>{
+    let n=sessions(s);
+    let g=sessionGoal(s);
 
- <section class="card">
-  <div class="row">
-   <h2>전체 달성률</h2>
-   <b>${overall.toFixed(2)}%</b>
-  </div>
-  ${bar(overall)}
-  <div class="row">
-   <b>${fmt(solved())} / ${fmt(goal())}문항</b>
-   <span class="muted">남은 ${fmt(Math.max(0,goal()-solved()))}문항</span>
-  </div>
-  <div class="note">
-   1회독 ${fmt(totalBase())}문항 · 목표 ${db.rounds}회독 ·
-   남은 기간 하루 ${fmt(daysLeft()?Math.ceil(Math.max(0,goal()-solved())/daysLeft()):0)}문항 필요
-  </div>
- </section>
+    return `
+    <div class="subject">
+      <b>${esc(s)}</b>
+      ${bar(percent(n,g))}
+      <small>
+        ${fmt1(n)} / ${fmt1(g)}회분
+        · ${percent(n,g).toFixed(1)}%
+      </small>
+    </div>`;
+  }).join('');
 
- <section class="card">
-  <div class="row">
-   <h2>과목별 누적 진도</h2>
-   <button class="btn sm" data-tab="log">풀이 기록 →</button>
-  </div>
-  <div class="subjects">${subhtml}</div>
- </section>
+  let recent=entries()
+    .slice()
+    .sort((a,b)=>b.date.localeCompare(a.date))
+    .slice(0,6)
+    .map(e=>`
+      <div class="item">
+        <span>
+          ${esc(e.date)} · ${esc(e.subject)}
+          · ${esc(e.year)} ${esc(e.type)}
+        </span>
+        <b>+${fmt(e.count)}문항</b>
+      </div>
+    `).join('')||
+    '<p class="muted">아직 풀이 기록이 없습니다.</p>';
 
- <section class="card">
-  <h2>최근 풀이 기록</h2>
-  <div class="list">${recent}</div>
- </section>
+  show('오늘의 공부 현황',`
+    ${hero()}
 
- <section class="card">
-  <div class="note warn">
-   일일 가상 손익 = (오늘 풀이 문항 ÷ 하루 목표 − 1) × 하루 기준금액.
-   휴식일은 0원으로 계산하고, 오늘의 금액은 학습 중인 잠정값입니다.
-  </div>
- </section>
- `);
+    <div class="grid3">
+      <div class="metric">
+        <small>당일 학습 진도율</small>
+        <div class="big">${rate.toFixed(1)}%</div>
+        <small>
+          ${fmt(count)} / ${fmt(dayGoal())}문항
+        </small>
+      </div>
+
+      <div class="metric">
+        <small>일일 가상 손익</small>
+        <div class="big money ${
+          profit<0?'negative':'positive'
+        }">${money(profit)}</div>
+        <small>오늘 목표 대비</small>
+      </div>
+
+      <div class="metric">
+        <small>누적 가상 손익</small>
+        <div class="big money ${
+          total<0?'negative':'positive'
+        }">${money(total)}</div>
+        <small>공부 시작일부터</small>
+      </div>
+    </div>
+
+    <section class="card">
+      <div class="row">
+        <h2>전체 달성률</h2>
+        <b>${overall.toFixed(2)}%</b>
+      </div>
+
+      ${bar(overall)}
+
+      <div class="row">
+        <b>
+          ${fmt(solved())} / ${fmt(goal())}문항
+        </b>
+        <span class="muted">
+          남은 ${
+            fmt(Math.max(0,goal()-solved()))
+          }문항
+        </span>
+      </div>
+
+      <div class="note">
+        1회독 ${fmt(totalBase())}문항 ·
+        목표 ${state.settings.rounds}회독 ·
+        남은 기간 하루 ${
+          fmt(daysLeft()
+            ?Math.ceil(
+              Math.max(0,goal()-solved())/daysLeft()
+            ):0)
+        }문항 필요
+      </div>
+    </section>
+
+    <section class="card">
+      <div class="row">
+        <h2>과목별 누적 진도</h2>
+        <button class="btn small" data-tab="log">
+          풀이 기록 →
+        </button>
+      </div>
+      <div class="subjects">${subjects}</div>
+    </section>
+
+    <section class="card">
+      <h2>최근 풀이 기록</h2>
+      <div class="list">${recent}</div>
+    </section>
+
+    <section class="card">
+      <div class="note warn">
+        가상 손익은 목표 달성 정도를 금액으로
+        표현한 점수입니다. 실제 소득이나
+        기회비용이 변한 것은 아닙니다.
+        휴식일은 0원 처리됩니다.
+      </div>
+    </section>
+  `);
 }
 
 function paperOptions(s){
- return db.papers.filter(p=>p.subject===s)
- .sort((a,b)=>b.year-a.year||a.type.localeCompare(b.type))
- .map(p=>`
-  <option value="${esc(p.id)}" ${p.id===chosenPaper?'selected':''}>
-   ${p.year} ${esc(p.type)} (${p.questions}문항)
-  </option>
- `).join('');
+  return state.papers
+    .filter(p=>p.subject===s)
+    .sort((a,b)=>
+      b.year-a.year||a.type.localeCompare(b.type)
+    )
+    .map(p=>`
+      <option value="${esc(p.id)}"
+        ${p.id===selectedPaper?'selected':''}>
+        ${p.year} ${esc(p.type)}
+        (${p.questions}문항)
+      </option>
+    `).join('');
 }
 
 function logView(){
- if(!subs().includes(chosenSubject))chosenSubject=subs()[0];
- let ps=db.papers.filter(p=>p.subject===chosenSubject);
- if(!ps.some(p=>p.id===chosenPaper))chosenPaper=ps[0]?.id||'';
- if(!subs().includes(paperFilter))paperFilter=subs()[0];
+  if(!sub().includes(selectedSubject)){
+    selectedSubject=sub()[0];
+  }
 
- let selected=db.papers.find(p=>p.id===chosenPaper);
+  let ps=state.papers.filter(
+    p=>p.subject===selectedSubject
+  );
 
- let list=db.entries.filter(e=>subs().includes(e.subject))
- .slice().sort((a,b)=>b.date.localeCompare(a.date))
- .slice(0,100).map(e=>`
-  <tr>
-   <td>${esc(e.date)}</td>
-   <td>${esc(e.subject)}</td>
-   <td>${esc(e.year)} ${esc(e.type)}</td>
-   <td>${fmt(e.count)}</td>
-   <td>${e.correct==null?'—':fmt(e.correct)}</td>
-   <td><button class="btn sm danger" data-remove="${esc(e.id)}">삭제</button></td>
-  </tr>
- `).join('');
+  if(!ps.some(p=>p.id===selectedPaper)){
+    selectedPaper=ps[0]?.id||'';
+  }
 
- let paperList=db.papers.filter(p=>p.subject===paperFilter)
- .sort((a,b)=>b.year-a.year||a.type.localeCompare(b.type))
- .map(p=>`
-  <div class="item">
-   <span>${p.year}년 ${esc(p.type)} · ${p.questions}문항</span>
-   <span>
-    <button class="btn sm" data-editpaper="${esc(p.id)}">수정</button>
-    <button class="btn sm danger" data-delpaper="${esc(p.id)}">삭제</button>
-   </span>
-  </div>
- `).join('');
+  if(!sub().includes(paperFilter)){
+    paperFilter=sub()[0];
+  }
 
- showPage('기출문제 풀이 기록',`
- <section class="card">
-  <h2>풀이 횟수 누적 등록</h2>
-  <p class="muted">같은 기출을 여러 번 풀어도 매번 기록할 수 있습니다.</p>
-  <form id="logForm" class="form" style="margin-top:12px">
-   <div class="field">
-    <label>날짜</label>
-    <input id="logDate" type="date" value="${chosenDate}" required>
-   </div>
-   <div class="field">
-    <label>과목</label>
-    <select id="logSubject">
-     ${subs().map(s=>`<option ${s===chosenSubject?'selected':''}>${esc(s)}</option>`).join('')}
-    </select>
-   </div>
-   <div class="field">
-    <label>시험지</label>
-    <select id="logPaper">${paperOptions(chosenSubject)}</select>
-   </div>
-   <div class="field">
-    <label>푼 문항 수</label>
-    <input id="logCount" type="number" min="1" max="10000" value="${selected?.questions||20}" required>
-   </div>
-   <div class="field">
-    <label>맞힌 문항 수 (선택)</label>
-    <input id="logCorrect" type="number" min="0" placeholder="미입력 가능">
-   </div>
-   <div class="field">
-    <label>&nbsp;</label>
-    <button class="btn primary" type="submit">풀이 기록 추가</button>
-   </div>
-  </form>
- </section>
+  let chosen=state.papers.find(
+    p=>p.id===selectedPaper
+  );
 
- <section class="card">
-  <h2>최근 풀이 이력</h2>
-  <div class="tablewrap">
-   <table>
-    <thead>
-     <tr>
-      <th>날짜</th><th>과목</th><th>시험지</th>
-      <th>풀이</th><th>정답</th><th>관리</th>
-     </tr>
-    </thead>
-    <tbody>${list||'<tr><td colspan="6">기록이 없습니다.</td></tr>'}</tbody>
-   </table>
-  </div>
- </section>
+  let rows=entries()
+    .slice()
+    .sort((a,b)=>b.date.localeCompare(a.date))
+    .slice(0,150)
+    .map(e=>`
+      <tr>
+        <td>${esc(e.date)}</td>
+        <td>${esc(e.subject)}</td>
+        <td>${esc(e.year)} ${esc(e.type)}</td>
+        <td>${fmt(e.count)}</td>
+        <td>${
+          e.correct==null?'—':fmt(e.correct)
+        }</td>
+        <td>
+          <button class="btn small danger"
+            data-remove="${esc(e.id)}">
+            삭제
+          </button>
+        </td>
+      </tr>
+    `).join('');
 
- <section class="card">
-  <h2>시험지 구성 관리</h2>
-  <div class="field" style="max-width:230px;margin-bottom:12px">
-   <label>관리할 과목</label>
-   <select id="paperFilter">
-    ${subs().map(s=>`<option ${s===paperFilter?'selected':''}>${esc(s)}</option>`).join('')}
-   </select>
-  </div>
-  <div class="list">${paperList}</div>
-  <h3 style="margin-top:20px">새로운 시험지 추가 (7급 기출 포함)</h3>
-  <form id="paperForm" class="form">
-   <div class="field">
-    <label>과목</label>
-    <select id="paperSubject">
-     ${subs().map(s=>`<option ${s===paperFilter?'selected':''}>${esc(s)}</option>`).join('')}
-    </select>
-   </div>
-   <div class="field">
-    <label>연도</label>
-    <input id="paperYear" type="number" min="1990" max="2100" value="2026" required>
-   </div>
-   <div class="field">
-    <label>시험 종류</label>
-    <input id="paperType" value="국가직 7급" required>
-   </div>
-   <div class="field">
-    <label>1회분 문항 수</label>
-    <input id="paperQuestions" type="number" min="1" max="500" value="20" required>
-   </div>
-   <div class="field">
-    <label>&nbsp;</label>
-    <button class="btn primary" type="submit">시험지 추가</button>
-   </div>
-  </form>
- </section>
- `);
+  let paperList=state.papers
+    .filter(p=>p.subject===paperFilter)
+    .sort((a,b)=>b.year-a.year)
+    .map(p=>`
+      <div class="item">
+        <span>
+          ${p.year}년 ${esc(p.type)}
+          · ${p.questions}문항
+        </span>
+        <span>
+          <button class="btn small"
+            data-editpaper="${esc(p.id)}">
+            수정
+          </button>
+          <button class="btn small danger"
+            data-delpaper="${esc(p.id)}">
+            삭제
+          </button>
+        </span>
+      </div>
+    `).join('');
+
+  show('기출문제 풀이 기록',`
+    <section class="card">
+      <h2>풀이 횟수 누적 등록</h2>
+      <p class="muted">
+        같은 기출을 여러 번 풀어도
+        매번 진도에 반영됩니다.
+      </p>
+
+      <form id="logForm" class="form"
+        style="margin-top:12px">
+        <div class="field">
+          <label>날짜</label>
+          <input id="logDate" type="date"
+            value="${esc(selectedDate)}" required>
+        </div>
+
+        <div class="field">
+          <label>과목</label>
+          <select id="logSubject">
+            ${sub().map(s=>`
+              <option ${
+                s===selectedSubject?'selected':''
+              }>${esc(s)}</option>
+            `).join('')}
+          </select>
+        </div>
+
+        <div class="field">
+          <label>시험지</label>
+          <select id="logPaper">
+            ${paperOptions(selectedSubject)}
+          </select>
+        </div>
+
+        <div class="field">
+          <label>푼 문항 수</label>
+          <input id="logCount" type="number"
+            min="1" max="10000"
+            value="${chosen?.questions||20}"
+            required>
+        </div>
+
+        <div class="field">
+          <label>맞힌 문항 수 (선택)</label>
+          <input id="logCorrect" type="number"
+            min="0" placeholder="선택 사항">
+        </div>
+
+        <div class="field">
+          <label>&nbsp;</label>
+          <button class="btn primary" type="submit">
+            클라우드에 기록 저장
+          </button>
+        </div>
+      </form>
+    </section>
+
+    <section class="card">
+      <h2>최근 풀이 이력</h2>
+      <div class="tablewrap">
+        <table>
+          <thead>
+            <tr>
+              <th>날짜</th>
+              <th>과목</th>
+              <th>시험지</th>
+              <th>풀이</th>
+              <th>정답</th>
+              <th>관리</th>
+            </tr>
+          </thead>
+          <tbody>
+            ${rows||`
+              <tr>
+                <td colspan="6">
+                  기록이 없습니다.
+                </td>
+              </tr>
+            `}
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <section class="card">
+      <h2>시험지 구성 관리</h2>
+
+      <div class="field"
+        style="max-width:230px;margin-bottom:12px">
+        <label>관리할 과목</label>
+        <select id="paperFilter">
+          ${sub().map(s=>`
+            <option ${
+              s===paperFilter?'selected':''
+            }>${esc(s)}</option>
+          `).join('')}
+        </select>
+      </div>
+
+      <div class="list">${paperList}</div>
+
+      <h3 style="margin-top:20px">
+        시험지 추가 (7급 기출 등)
+      </h3>
+
+      <form id="paperForm" class="form">
+        <div class="field">
+          <label>과목</label>
+          <select id="paperSubject">
+            ${sub().map(s=>`
+              <option ${
+                s===paperFilter?'selected':''
+              }>${esc(s)}</option>
+            `).join('')}
+          </select>
+        </div>
+
+        <div class="field">
+          <label>연도</label>
+          <input id="paperYear" type="number"
+            min="1990" max="2100"
+            value="2026" required>
+        </div>
+
+        <div class="field">
+          <label>시험 종류</label>
+          <input id="paperType"
+            value="국가직 7급" required>
+        </div>
+
+        <div class="field">
+          <label>1회분 문항 수</label>
+          <input id="paperQuestions" type="number"
+            min="1" max="500" value="20" required>
+        </div>
+
+        <div class="field">
+          <label>&nbsp;</label>
+          <button class="btn primary" type="submit">
+            시험지 추가
+          </button>
+        </div>
+      </form>
+    </section>
+  `);
 }
 
 function monthHTML(y,m){
- let first=new Date(y,m,1);
- let length=new Date(y,m+1,0).getDate();
- let h=`<div class="month"><h3>${y}년 ${m+1}월</h3><div class="days">`;
+  let length=new Date(y,m+1,0).getDate();
 
- for(let w of ['일','월','화','수','목','금','토']){
-  h+=`<span class="day head">${w}</span>`;
- }
- for(let i=0;i<first.getDay();i++){
-  h+='<span class="day blank"></span>';
- }
- for(let d=1;d<=length;d++){
-  let date=`${y}-${String(m+1).padStart(2,'0')}-${String(d).padStart(2,'0')}`;
-  let n=onDay(date);
-  let cls=date===db.targetDate?'exam':
-   rest(date)?'rest':
-   n>=dayGoal()?'done':
-   n>0?'partial':
-   date<today()?'past':'';
+  let h=`
+    <div class="month">
+      <h3>${y}년 ${m+1}월</h3>
+      <div class="days">`;
 
-  h+=`
-   <button
-    class="day ${cls} ${date===today()?'today':''} ${date===APPLICATION?'apply':''}"
-    data-day="${date}"
-    title="${date} · ${n}문항${date===APPLICATION?' · 원서접수일':''}">
-    ${d}
-   </button>`;
- }
- return h+'</div></div>';
+  for(let w of ['일','월','화','수','목','금','토']){
+    h+=`<span class="day head">${w}</span>`;
+  }
+
+  for(let i=0;i<new Date(y,m,1).getDay();i++){
+    h+='<span class="day blank"></span>';
+  }
+
+  for(let d=1;d<=length;d++){
+    let date=`${y}-${
+      String(m+1).padStart(2,'0')
+    }-${String(d).padStart(2,'0')}`;
+
+    let n=onDay(date);
+
+    let cls=
+      date===state.settings.targetDate?'exam':
+      isRest(date)?'rest':
+      n>=dayGoal()?'done':
+      n>0?'partial':
+      date<today()?'past':'';
+
+    h+=`
+      <button
+        class="day ${cls}
+          ${date===today()?'today':''}
+          ${
+            date===state.settings.applicationDate
+              ?'apply':''
+          }"
+        data-day="${date}"
+        title="${date} · ${n}문항">
+        ${d}
+      </button>`;
+  }
+
+  return h+'</div></div>';
 }
 
 function calendarView(){
- let start=new Date(today()+'T12:00:00');
- let end=new Date(db.targetDate+'T12:00:00');
- let months=[];
+  let t=new Date(today()+'T12:00:00');
+  let end=new Date(
+    state.settings.targetDate+'T12:00:00'
+  );
 
- for(let i=0;i<24;i++){
-  let y=start.getFullYear(),m=start.getMonth()+i;
-  let first=new Date(y,m,1);
-  if(first>end&&i>0)break;
-  months.push(monthHTML(first.getFullYear(),first.getMonth()));
- }
+  let months=[];
 
- let elapsed=Math.max(0,Math.min(planDays(),diff(db.startDate,today())));
+  for(let i=0;i<24;i++){
+    let m=new Date(
+      t.getFullYear(),t.getMonth()+i,1
+    );
 
- showPage('시험일까지 남은 달력',`
- ${hero()}
- <div class="grid3">
-  <div class="metric">
-   <small>준비 기간 경과율</small>
-   <div class="big">${pct(elapsed,planDays()).toFixed(1)}%</div>
-   <small>${elapsed} / ${planDays()}일</small>
-  </div>
-  <div class="metric">
-   <small>전체 달성률</small>
-   <div class="big">${pct(solved(),goal()).toFixed(1)}%</div>
-   <small>${fmt(solved())}문항 누적</small>
-  </div>
-  <div class="metric">
-   <small>남은 날 필요량</small>
-   <div class="big">${fmt(daysLeft()?Math.ceil(Math.max(0,goal()-solved())/daysLeft()):0)}</div>
-   <small>문항 / 일</small>
-  </div>
- </div>
+    if(m>end&&i>0)break;
 
- <section class="card">
-  <h2>월별 전체 달력</h2>
-  <div class="legend">
-   <span><i class="dot" style="background:#e8ebf0"></i>지난 날</span>
-   <span><i class="dot" style="background:#e5efff"></i>남은 날</span>
-   <span><i class="dot" style="background:#ccefe1"></i>목표 달성</span>
-   <span><i class="dot" style="background:#d64f61"></i>시험일</span>
-   <span><i class="dot" style="background:#e8a12b"></i>원서접수일 테두리</span>
-  </div>
-  <div class="calendar">${months.join('')}</div>
- </section>
+    months.push(
+      monthHTML(m.getFullYear(),m.getMonth())
+    );
+  }
 
- <section class="card">
-  <h2>휴식일 지정</h2>
-  <p class="muted">쉬는 날은 가상 손익을 0원으로 처리합니다.</p>
-  <div class="form" style="margin-top:12px">
-   <div class="field">
-    <label>날짜</label>
-    <input id="restDate" type="date" value="${today()}">
-   </div>
-   <div class="field">
-    <label>&nbsp;</label>
-    <button class="btn" data-rest>선택 날짜 휴식일 전환</button>
-   </div>
-  </div>
-  <div class="note">
-   현재 휴식일: ${db.restDates.length?db.restDates.slice().sort().map(esc).join(', '):'없음'}
-  </div>
- </section>
- `);
+  let elapsed=Math.max(
+    0,
+    Math.min(
+      planDays(),
+      diff(state.settings.startDate,today())
+    )
+  );
+
+  show('시험일까지 남은 달력',`
+    ${hero()}
+
+    <div class="grid3">
+      <div class="metric">
+        <small>준비 기간 경과율</small>
+        <div class="big">
+          ${percent(elapsed,planDays()).toFixed(1)}%
+        </div>
+      </div>
+
+      <div class="metric">
+        <small>전체 달성률</small>
+        <div class="big">
+          ${percent(solved(),goal()).toFixed(1)}%
+        </div>
+      </div>
+
+      <div class="metric">
+        <small>남은 날 필요량</small>
+        <div class="big">
+          ${fmt(daysLeft()
+            ?Math.ceil(
+              Math.max(0,goal()-solved())/daysLeft()
+            ):0)}
+        </div>
+        <small>문항/일</small>
+      </div>
+    </div>
+
+    <section class="card">
+      <h2>월별 전체 달력</h2>
+
+      <div class="legend">
+        <span>
+          <i class="dot"
+            style="background:#e7eaf0"></i>
+          지난 날
+        </span>
+        <span>
+          <i class="dot"
+            style="background:#cceede"></i>
+          목표 달성
+        </span>
+        <span>
+          <i class="dot"
+            style="background:#d95565"></i>
+          시험일
+        </span>
+        <span>
+          <i class="dot"
+            style="background:#e9a325"></i>
+          원서접수 테두리
+        </span>
+      </div>
+
+      <div class="calendar">
+        ${months.join('')}
+      </div>
+    </section>
+
+    <section class="card">
+      <h2>휴식일 지정</h2>
+      <div class="form">
+        <div class="field">
+          <label>날짜</label>
+          <input id="restDate"
+            type="date" value="${today()}">
+        </div>
+        <div class="field">
+          <label>&nbsp;</label>
+          <button class="btn" data-rest>
+            휴식일 지정/해제
+          </button>
+        </div>
+      </div>
+
+      <div class="note">
+        현재 휴식일:
+        ${state.rests.length
+          ?state.rests.slice().sort().map(esc).join(', ')
+          :'없음'}
+      </div>
+    </section>
+  `);
 }
 
 function costView(){
- let past=Number(db.pastYears||0)*Number(db.pastAnnualCost||0);
- let remaining=daysLeft()/365;
- let foregone=(Number(db.monthlySalary||0)-Number(db.monthlyChildcare||0))*daysLeft()/30;
- let future=Number(db.futureAnnualCost||0)*remaining;
+  let s=state.settings;
 
- showPage('경제적 기회비용',`
- <section class="card">
-  <h2>비용 계산 설정</h2>
-  <form id="costForm" class="form">
-   <div class="field">
-    <label>대체 취업 월 실수령 (만원)</label>
-    <input id="salary" type="number" min="0" value="${db.monthlySalary}">
-   </div>
-   <div class="field">
-    <label>취업 시 추가 월 돌봄비 (만원)</label>
-    <input id="childcare" type="number" min="0" value="${db.monthlyChildcare}">
-   </div>
-   <div class="field">
-    <label>과거 준비 기간 (년)</label>
-    <input id="pastYears" type="number" min="0" value="${db.pastYears}">
-   </div>
-   <div class="field">
-    <label>과거 연평균 준비비 (만원)</label>
-    <input id="pastAnnualCost" type="number" min="0" value="${db.pastAnnualCost}">
-   </div>
-   <div class="field">
-    <label>향후 연간 준비비 (만원)</label>
-    <input id="futureAnnualCost" type="number" min="0" value="${db.futureAnnualCost}">
-   </div>
-   <div class="field">
-    <label>&nbsp;</label>
-    <button class="btn primary" type="submit">금액 설정 저장</button>
-   </div>
-  </form>
- </section>
+  let past=
+    Number(s.pastYears||0)*
+    Number(s.pastAnnualCost||0);
 
- <div class="grid3">
-  <div class="metric">
-   <small>과거 지출 · 매몰비용</small>
-   <div class="big money">${fmt(past)}만원</div>
-  </div>
-  <div class="metric">
-   <small>시험일까지 예상 순경제비용</small>
-   <div class="big money">${fmt(foregone+future)}만원</div>
-  </div>
-  <div class="metric">
-   <small>누적 학습 가상 손익</small>
-   <div class="big money ${cumulative()<0?'neg':'pos'}">${money(cumulative())}</div>
-  </div>
- </div>
+  let foregone=(
+    Number(s.monthlySalary||0)-
+    Number(s.monthlyChildcare||0)
+  )*daysLeft()/30;
 
- <section class="card">
-  <h2>예상 비용 구성</h2>
-  <div class="list">
-   <div class="item">
-    <span>취업 시 예상 순소득 (돌봄비 차감)</span>
-    <b>${fmt(foregone)}만원</b>
-   </div>
-   <div class="item">
-    <span>앞으로 시험 준비비</span>
-    <b>${fmt(future)}만원</b>
-   </div>
-   <div class="item">
-    <span>준비 기간</span>
-    <b>${daysLeft()}일</b>
-   </div>
-  </div>
-  <div class="note warn">
-   가상 손익은 공부 목표를 시각화한 점수일 뿐 실제 기회비용이 줄어드는 금액은 아닙니다.
-   과거 준비비는 앞으로의 의사결정과 구분하세요.
-  </div>
- </section>
- `);
+  let future=
+    Number(s.futureAnnualCost||0)*
+    daysLeft()/365;
+
+  show('경제적 기회비용',`
+    <section class="card">
+      <h2>비용 설정 (단위: 만원)</h2>
+
+      <form id="costForm" class="form">
+        <div class="field">
+          <label>대체 취업 월 실수령</label>
+          <input id="salary" type="number"
+            min="0" value="${s.monthlySalary}">
+        </div>
+
+        <div class="field">
+          <label>취업 시 추가 월 돌봄비</label>
+          <input id="childcare" type="number"
+            min="0" value="${s.monthlyChildcare}">
+        </div>
+
+        <div class="field">
+          <label>과거 준비 기간 (년)</label>
+          <input id="pastYears" type="number"
+            min="0" value="${s.pastYears}">
+        </div>
+
+        <div class="field">
+          <label>과거 연평균 준비비</label>
+          <input id="pastAnnualCost" type="number"
+            min="0" value="${s.pastAnnualCost}">
+        </div>
+
+        <div class="field">
+          <label>향후 연간 준비비</label>
+          <input id="futureAnnualCost" type="number"
+            min="0" value="${s.futureAnnualCost}">
+        </div>
+
+        <div class="field">
+          <label>&nbsp;</label>
+          <button class="btn primary" type="submit">
+            설정 저장
+          </button>
+        </div>
+      </form>
+    </section>
+
+    <div class="grid3">
+      <div class="metric">
+        <small>과거 지출 · 매몰비용</small>
+        <div class="big money">
+          ${fmt(past)}만원
+        </div>
+      </div>
+
+      <div class="metric">
+        <small>시험일까지 예상 순경제비용</small>
+        <div class="big money">
+          ${fmt(foregone+future)}만원
+        </div>
+      </div>
+
+      <div class="metric">
+        <small>누적 학습 가상 손익</small>
+        <div class="big money ${
+          cumulative()<0?'negative':'positive'
+        }">
+          ${money(cumulative())}
+        </div>
+      </div>
+    </div>
+
+    <section class="card">
+      <div class="item">
+        <span>
+          취업 시 예상 순소득 (돌봄비 차감)
+        </span>
+        <b>${fmt(foregone)}만원</b>
+      </div>
+
+      <div class="item">
+        <span>앞으로의 시험 준비비</span>
+        <b>${fmt(future)}만원</b>
+      </div>
+
+      <div class="note warn">
+        취업 가능성을 100%로 가정한
+        단순 비교입니다. 실제 합격 확률,
+        경력 가치 등은 포함하지 않았으며,
+        학습 가상 손익은 실제 기회비용과 다릅니다.
+      </div>
+    </section>
+  `);
 }
 
 function settingsView(){
- showPage('설정 · 백업',`
- <section class="card">
-  <h2>학습 계획</h2>
-  <form id="planForm" class="form">
-   <div class="field">
-    <label>응시 직렬</label>
-    <select id="mode">
-     <option value="nurse" ${db.mode==='nurse'?'selected':''}>간호직</option>
-     <option value="admin" ${db.mode==='admin'?'selected':''}>일반행정직</option>
-    </select>
-   </div>
-   <div class="field">
-    <label>목표 회독</label>
-    <input id="rounds" type="number" min="1" max="1000" value="${db.rounds}" required>
-   </div>
-   <div class="field">
-    <label>공부 시작일</label>
-    <input id="startDate" type="date" value="${esc(db.startDate)}" required>
-   </div>
-   <div class="field">
-    <label>필기시험일</label>
-    <input id="targetDate" type="date" value="${esc(db.targetDate)}" required>
-   </div>
-   <div class="field">
-    <label>&nbsp;</label>
-    <button class="btn primary" type="submit">학습 계획 저장</button>
-   </div>
-  </form>
-  <div class="note">
-   원서접수일: <b>2027년 3월 22일</b> ·
-   필기시험일: <b>2027년 6월 19일</b> (기본값).
-   원서접수일은 별도 D-Day로 표시됩니다.
-  </div>
- </section>
+  let s=state.settings;
 
- <section class="card">
-  <h2>기출 기본 구성</h2>
-  <div class="list">
-   ${subs().map(s=>`
-    <div class="item">
-     <span>${esc(s)}</span>
-     <b>${db.papers.filter(p=>p.subject===s).length}회분</b>
-    </div>
-   `).join('')}
-  </div>
-  <div class="note">
-   국어·영어: 2016~2026년 국가직·지방직 9급, 각 20문항.
-   전문과목: 연도별 20문항.
-   LEET: 6개년 추리논증 각 40문항.
-   7급 기출은 풀이 기록에서 추가하세요.
-  </div>
- </section>
+  let old=!!localStorage.getItem(
+    'exam-15round-planner-v3'
+  );
 
- <section class="card">
-  <h2>데이터 백업 및 복원</h2>
-  <div class="row" style="justify-content:flex-start">
-   <button class="btn primary" data-backup>JSON 전체 백업</button>
-   <button class="btn" data-csv>CSV 내보내기</button>
-   <label class="btn" for="restore" style="cursor:pointer">JSON 백업 복원</label>
-   <input id="restore" class="hidden" type="file" accept=".json,application/json">
-  </div>
-  <div class="note">
-   같은 GitHub 주소를 사용해도 휴대폰과 PC 기록은 자동 동기화되지 않습니다.
-   JSON 백업을 주기적으로 저장하세요.
-  </div>
- </section>
+  show('설정 · 클라우드 백업',`
+    <section class="card">
+      <h2>학습 계획</h2>
 
- <section class="card">
-  <h2>전체 초기화</h2>
-  <button class="btn danger" data-reset>모든 기록 삭제</button>
- </section>
- `);
+      <form id="planForm" class="form">
+        <div class="field">
+          <label>응시 직렬</label>
+          <select id="mode">
+            <option value="nurse"
+              ${s.mode==='nurse'?'selected':''}>
+              간호직
+            </option>
+            <option value="admin"
+              ${s.mode==='admin'?'selected':''}>
+              일반행정직
+            </option>
+          </select>
+        </div>
+
+        <div class="field">
+          <label>목표 회독</label>
+          <input id="rounds" type="number"
+            min="1" max="1000"
+            value="${s.rounds}" required>
+        </div>
+
+        <div class="field">
+          <label>공부 시작일</label>
+          <input id="startDate" type="date"
+            value="${esc(s.startDate)}" required>
+        </div>
+
+        <div class="field">
+          <label>원서접수일</label>
+          <input id="applicationDate" type="date"
+            value="${esc(s.applicationDate)}" required>
+        </div>
+
+        <div class="field">
+          <label>필기시험일</label>
+          <input id="targetDate" type="date"
+            value="${esc(s.targetDate)}" required>
+        </div>
+
+        <div class="field">
+          <label>&nbsp;</label>
+          <button class="btn primary" type="submit">
+            계획 저장
+          </button>
+        </div>
+      </form>
+
+      <div class="note">
+        기본 원서접수일 2027-03-22,
+        필기시험일 2027-06-19.
+        날짜는 직접 수정할 수 있습니다.
+      </div>
+    </section>
+
+    <section class="card">
+      <h2>기출 기본 구성</h2>
+
+      <div class="list">
+        ${sub().map(t=>`
+          <div class="item">
+            <span>${esc(t)}</span>
+            <b>${
+              state.papers.filter(
+                p=>p.subject===t
+              ).length
+            }회분</b>
+          </div>
+        `).join('')}
+      </div>
+
+      <div class="note">
+        국어·영어는 2016~2026년
+        국가직·지방직 9급 각 20문항,
+        전문과목은 연도별 20문항,
+        LEET는 6개년 각 40문항으로 시작합니다.
+        실제 기출에 맞춰 수정하세요.
+      </div>
+    </section>
+
+    <section class="card">
+      <h2>클라우드 데이터 백업·복원</h2>
+
+      <div class="row"
+        style="justify-content:flex-start">
+        <button class="btn primary" data-backup>
+          JSON 전체 백업
+        </button>
+        <button class="btn" data-csv>
+          CSV 내보내기
+        </button>
+
+        <label class="btn" for="restoreFile"
+          style="cursor:pointer">
+          JSON 파일 복원
+        </label>
+
+        <input id="restoreFile" type="file"
+          accept=".json,application/json"
+          class="hidden">
+
+        ${old?`
+          <button class="btn" data-migrate>
+            이 기기의 기존 기록 가져오기
+          </button>
+        `:''}
+      </div>
+
+      <div class="note">
+        복원은 현재 클라우드 데이터를 교체합니다.
+        먼저 JSON 백업을 권장합니다.
+        배우자와 남편은 동일한 계정으로
+        로그인해야 같은 데이터를 볼 수 있습니다.
+      </div>
+    </section>
+
+    <section class="card">
+      <h2>전체 초기화</h2>
+      <button class="btn danger" data-reset>
+        클라우드 데이터 초기화
+      </button>
+    </section>
+  `);
 }
 
 function render(){
- if(tab==='dashboard')dashboard();
- else if(tab==='log')logView();
- else if(tab==='calendar')calendarView();
- else if(tab==='cost')costView();
- else settingsView();
+  if(!user)return;
+
+  if(!Object.values(ready).every(Boolean)){
+    $('view').innerHTML=`
+      <div class="card">
+        클라우드 학습 기록을 불러오는 중입니다...
+      </div>`;
+    return;
+  }
+
+  if(tab==='dashboard')dashboard();
+  else if(tab==='log')logView();
+  else if(tab==='calendar')calendarView();
+  else if(tab==='cost')costView();
+  else settingsView();
 }
 
 function go(t){
- tab=t;
- render();
- scrollTo(0,0);
+  tab=t;
+  render();
+  window.scrollTo(0,0);
 }
 
-function download(name,text,type){
- let url=URL.createObjectURL(new Blob(['\ufeff',text],{type}));
- let a=document.createElement('a');
- a.href=url;
- a.download=name;
- a.click();
- setTimeout(()=>URL.revokeObjectURL(url),1000);
-}
+async function safeRun(task){
+  if(busy)return;
 
-document.addEventListener('click',e=>{
- let b=e.target.closest('button');
- if(!b)return;
- let d=b.dataset;
+  busy=true;
+  setStatus('저장 중...');
 
- if(d.tab){
-  go(d.tab);
-  return;
- }
- if(d.day){
-  chosenDate=d.day;
-  go('log');
-  return;
- }
- if(d.remove){
-  if(confirm('이 풀이 기록을 삭제할까요?')){
-   db.entries=db.entries.filter(x=>x.id!==d.remove);
-   save();
-   render();
-  }
-  return;
- }
- if(d.editpaper){
-  let p=db.papers.find(x=>x.id===d.editpaper);
-  if(!p)return;
-  let t=prompt('시험 종류',p.type);
-  if(t===null)return;
-  let q=prompt('문항 수',p.questions);
-  if(q===null)return;
-  let y=prompt('연도',p.year);
-  if(y===null)return;
-  if(!t.trim()||!Number.isInteger(+q)||+q<1||+q>500||!Number.isInteger(+y)){
-   alert('입력값을 확인하세요.');
-   return;
-  }
-  Object.assign(p,{type:t.trim(),questions:+q,year:+y});
-  save();
-  render();
-  return;
- }
- if(d.delpaper){
-  if(confirm('이 시험지를 삭제할까요? 기존 풀이 기록은 유지됩니다.')){
-   db.papers=db.papers.filter(x=>x.id!==d.delpaper);
-   save();
-   render();
-  }
-  return;
- }
- if('rest'in d){
-  let x=$('restDate').value;
-  if(!Number.isFinite(numDate(x)))return;
-  db.restDates=rest(x)
-   ?db.restDates.filter(s=>s!==x)
-   :[...db.restDates,x];
-  save();
-  render();
-  return;
- }
- if('backup'in d){
-  download('exam-backup-'+today()+'.json',JSON.stringify(db,null,2),'application/json');
-  return;
- }
- if('csv'in d){
-  let rows=[
-   ['날짜','과목','연도','시험','풀이 문항','정답 문항'],
-   ...db.entries.map(x=>[x.date,x.subject,x.year,x.type,x.count,x.correct??''])
-  ];
-  download(
-   'exam-history.csv',
-   rows.map(r=>r.map(x=>'"'+String(x).replace(/"/g,'""')+'"').join(',')).join('\r\n'),
-   'text/csv'
-  );
-  return;
- }
- if('reset'in d&&confirm('정말 모든 기록을 초기화할까요?')&&confirm('삭제한 기록은 복구할 수 없습니다. 계속할까요?')){
-  db=defaults();
-  save();
-  go('dashboard');
- }
-});
-
-document.addEventListener('change',async e=>{
- let x=e.target;
- if(x.id==='logSubject'){
-  chosenSubject=x.value;
-  chosenPaper=db.papers.find(p=>p.subject===chosenSubject)?.id||'';
-  let p=db.papers.find(p=>p.id===chosenPaper);
-  $('logPaper').innerHTML=paperOptions(chosenSubject);
-  $('logCount').value=p?.questions||20;
- }else if(x.id==='logPaper'){
-  chosenPaper=x.value;
-  $('logCount').value=db.papers.find(p=>p.id===chosenPaper)?.questions||20;
- }else if(x.id==='logDate'){
-  chosenDate=x.value;
- }else if(x.id==='paperFilter'){
-  paperFilter=x.value;
-  render();
- }else if(x.id==='restore'){
-  let file=x.files?.[0];
-  if(!file)return;
   try{
-   let data=JSON.parse(await file.text());
-   if(data.version!==3||
-      !Array.isArray(data.entries)||
-      !Array.isArray(data.papers)||
-      !['nurse','admin'].includes(data.mode)){
-    throw Error('지원하지 않는 백업 파일');
-   }
-   if(!confirm('현재 데이터를 백업 파일로 교체할까요?'))return;
-   db=data;
-   db.restDates??=[];
-   save();
-   go('dashboard');
-  }catch(err){
-   alert('복원 실패: '+err.message);
+    await task();
+    setStatus('클라우드 동기화됨');
+  }catch(e){
+    failure(e);
+    setStatus('오류 발생');
+  }finally{
+    busy=false;
   }
- }
-});
+}
 
-document.addEventListener('submit',e=>{
- e.preventDefault();
- let id=e.target.id;
+function startListening(){
+  ready={
+    settings:false,
+    papers:false,
+    entries:false,
+    rests:false
+  };
 
- try{
-  if(id==='logForm'){
-   let p=db.papers.find(p=>p.id===$('logPaper').value);
-   let count=Number($('logCount').value);
-   let date=$('logDate').value;
-   let correct=$('logCorrect').value;
+  const r=refs();
 
-   if(!p||
-      !Number.isInteger(count)||
-      count<1||
-      count>10000||
-      !Number.isFinite(numDate(date))||
-      (correct!==''&&(!Number.isInteger(+correct)||+correct<0||+correct>count))){
-    throw Error('풀이 입력값을 확인하세요.');
-   }
+  const fail=e=>{
+    console.error(e);
+    setStatus(
+      '읽기 실패: Firestore 규칙과 네트워크를 확인하세요'
+    );
+  };
 
-   db.entries.push({
-    id:uid(),
+  unsubs.push(onSnapshot(r.settings,s=>{
+    if(s.exists()){
+      state.settings={
+        ...defaults(),
+        ...s.data()
+      };
+    }
+    ready.settings=true;
+    render();
+  },fail));
+
+  unsubs.push(onSnapshot(r.papers,s=>{
+    state.papers=s.docs.map(
+      d=>({id:d.id,...d.data()})
+    );
+    ready.papers=true;
+    render();
+  },fail));
+
+  unsubs.push(onSnapshot(r.entries,s=>{
+    state.entries=s.docs.map(
+      d=>({id:d.id,...d.data()})
+    );
+    ready.entries=true;
+    render();
+  },fail));
+
+  unsubs.push(onSnapshot(r.rests,s=>{
+    state.rests=s.docs.map(d=>d.id);
+    ready.rests=true;
+    render();
+  },fail));
+
+  setStatus('실시간 동기화 연결됨');
+}
+
+async function initializeUser(){
+  let r=refs();
+  let s=await getDoc(r.settings);
+
+  if(s.exists())return;
+
+  let batch=writeBatch(fire);
+
+  batch.set(r.settings,defaults());
+
+  for(let p of defaultPapers()){
+    let {id,...data}=p;
+    batch.set(doc(r.papers,id),data);
+  }
+
+  await batch.commit();
+}
+
+function clearListening(){
+  for(let f of unsubs)f();
+  unsubs=[];
+  ready={};
+
+  state={
+    settings:defaults(),
+    papers:[],
+    entries:[],
+    rests:[]
+  };
+}
+
+async function addEntry(){
+  let p=state.papers.find(
+    p=>p.id===$('logPaper').value
+  );
+
+  let date=$('logDate').value;
+  let count=Number($('logCount').value);
+  let raw=$('logCorrect').value;
+
+  let correct=raw===''?null:Number(raw);
+
+  if(
+    !p||
+    !sub().includes(p.subject)||
+    !Number.isFinite(dayNum(date))||
+    !Number.isInteger(count)||
+    count<1||count>10000||
+    correct!==null&&(
+      !Number.isInteger(correct)||
+      correct<0||correct>count
+    )
+  ){
+    throw Error('풀이 기록 입력값을 확인하세요.');
+  }
+
+  let id=uid();
+
+  await setDoc(doc(refs().entries,id),{
     date,
     paperId:p.id,
+    paperQuestions:p.questions,
     subject:p.subject,
     year:p.year,
     type:p.type,
     count,
-    correct:correct===''?null:+correct,
+    correct,
     createdAt:new Date().toISOString()
-   });
-   chosenDate=date;
-   chosenPaper=p.id;
-   save();
-   render();
-   alert(count+'문항이 누적되었습니다.');
+  });
 
-  }else if(id==='paperForm'){
-   let subject=$('paperSubject').value;
-   let year=+$('paperYear').value;
-   let type=$('paperType').value.trim();
-   let questions=+$('paperQuestions').value;
+  selectedDate=date;
+  selectedPaper=p.id;
+}
 
-   if(!subs().includes(subject)||
-      !Number.isInteger(year)||
-      year<1990||year>2100||
-      !type||
-      !Number.isInteger(questions)||
-      questions<1||questions>500){
-    throw Error('시험지 입력값을 확인하세요.');
-   }
-   if(db.papers.some(p=>p.subject===subject&&p.year===year&&p.type===type)){
-    throw Error('이미 등록된 시험지입니다.');
-   }
+function download(name,body,type){
+  let u=URL.createObjectURL(
+    new Blob(['\ufeff',body],{type})
+  );
 
-   db.papers.push({id:uid(),subject,year,type,questions});
-   paperFilter=subject;
-   save();
-   render();
+  let a=document.createElement('a');
+  a.href=u;
+  a.download=name;
+  document.body.append(a);
+  a.click();
+  a.remove();
 
-  }else if(id==='costForm'){
-   for(let [field,key] of [
-    ['salary','monthlySalary'],
-    ['childcare','monthlyChildcare'],
-    ['pastYears','pastYears'],
-    ['pastAnnualCost','pastAnnualCost'],
-    ['futureAnnualCost','futureAnnualCost']
-   ]){
-    let v=Number($(field).value);
-    if(!Number.isFinite(v)||v<0||v>5000){
-     throw Error('금액 입력값을 확인하세요.');
-    }
-    db[key]=v;
-   }
-   save();
-   render();
+  setTimeout(()=>URL.revokeObjectURL(u),1000);
+}
 
-  }else if(id==='planForm'){
-   let start=$('startDate').value;
-   let end=$('targetDate').value;
-   let rounds=+$('rounds').value;
+function backup(){
+  return {
+    version:4,
+    exportedAt:new Date().toISOString(),
+    settings:state.settings,
+    papers:state.papers,
+    entries:state.entries,
+    restDates:state.rests
+  };
+}
 
-   if(!Number.isFinite(numDate(start))||
-      !Number.isFinite(numDate(end))||
-      diff(start,end)<=0||
-      !Number.isInteger(rounds)||
-      rounds<1||rounds>1000){
-    throw Error('학습 기간과 회독 수를 확인하세요.');
-   }
-
-   Object.assign(db,{
-    mode:$('mode').value,
-    startDate:start,
-    targetDate:end,
-    rounds,
-    isOfficialExamDate:true
-   });
-   save();
-   render();
+function normalizeBackup(x){
+  if(!x||![3,4].includes(x.version)){
+    throw Error('지원하지 않는 백업 파일입니다.');
   }
- }catch(err){
-  alert(err.message);
- }
+
+  let settings=x.version===3
+    ?Object.fromEntries(
+      Object.keys(defaults()).map(
+        k=>[k,x[k]??defaults()[k]]
+      )
+    )
+    :{...defaults(),...x.settings};
+
+  let pp=x.papers;
+  let ee=x.entries;
+  let rr=x.restDates;
+
+  if(
+    !Array.isArray(pp)||
+    !Array.isArray(ee)||
+    !Array.isArray(rr)||
+    !['nurse','admin'].includes(settings.mode)||
+    !Number.isFinite(dayNum(settings.startDate))||
+    !Number.isFinite(dayNum(settings.targetDate))||
+    diff(settings.startDate,settings.targetDate)<=0||
+    pp.length>10000||
+    ee.length>100000
+  ){
+    throw Error('백업 내용이 올바르지 않습니다.');
+  }
+
+  settings.applicationDate=
+    Number.isFinite(dayNum(settings.applicationDate))
+    ?settings.applicationDate
+    :'2027-03-22';
+
+  settings.rounds=Number(settings.rounds)||15;
+
+  const cleanId=id=>{
+    let s=String(id||uid());
+
+    if(s.includes('/')||s.length>200){
+      throw Error('잘못된 기록 ID');
+    }
+
+    return s;
+  };
+
+  pp=pp.map(p=>{
+    if(
+      !ALL.includes(p.subject)||
+      !Number.isInteger(Number(p.questions))||
+      Number(p.questions)<1||
+      Number(p.questions)>500
+    ){
+      throw Error('시험지 데이터 오류');
+    }
+
+    return {
+      id:cleanId(p.id),
+      subject:p.subject,
+      year:Number(p.year),
+      type:String(p.type||'기출').slice(0,80),
+      questions:Number(p.questions)
+    };
+  });
+
+  ee=ee.map(e=>{
+    if(
+      !ALL.includes(e.subject)||
+      !Number.isFinite(dayNum(e.date))||
+      !Number.isInteger(Number(e.count))||
+      Number(e.count)<1||
+      Number(e.count)>10000
+    ){
+      throw Error('풀이 기록 오류');
+    }
+
+    return {
+      id:cleanId(e.id),
+      date:e.date,
+      paperId:String(e.paperId||''),
+      paperQuestions:Number(e.paperQuestions||20),
+      subject:e.subject,
+      year:Number(e.year||2026),
+      type:String(e.type||'기출').slice(0,80),
+      count:Number(e.count),
+      correct:e.correct==null
+        ?null:Number(e.correct),
+      createdAt:String(e.createdAt||'')
+    };
+  });
+
+  rr=rr.filter(
+    d=>Number.isFinite(dayNum(d))
+  );
+
+  return {
+    settings,
+    papers:pp,
+    entries:ee,
+    restDates:[...new Set(rr)]
+  };
+}
+
+async function restoreCloud(data){
+  let normalized=normalizeBackup(data);
+
+  if(!confirm(
+    '현재 클라우드의 모든 기록을 이 백업으로 교체할까요? 두 기기에 모두 반영됩니다.'
+  ))return;
+
+  let r=refs();
+
+  let [ps,es,rs]=await Promise.all([
+    getDocs(r.papers),
+    getDocs(r.entries),
+    getDocs(r.rests)
+  ]);
+
+  let ops=[];
+
+  for(let snap of [ps,es,rs]){
+    for(let d of snap.docs){
+      ops.push({
+        kind:'delete',
+        ref:d.ref
+      });
+    }
+  }
+
+  ops.push({
+    kind:'set',
+    ref:r.settings,
+    data:normalized.settings
+  });
+
+  for(let p of normalized.papers){
+    let {id,...data}=p;
+
+    ops.push({
+      kind:'set',
+      ref:doc(r.papers,id),
+      data
+    });
+  }
+
+  for(let e of normalized.entries){
+    let {id,...data}=e;
+
+    ops.push({
+      kind:'set',
+      ref:doc(r.entries,id),
+      data
+    });
+  }
+
+  for(let d of normalized.restDates){
+    ops.push({
+      kind:'set',
+      ref:doc(r.rests,d),
+      data:{rest:true}
+    });
+  }
+
+  for(let i=0;i<ops.length;i+=350){
+    let batch=writeBatch(fire);
+
+    for(let o of ops.slice(i,i+350)){
+      if(o.kind==='delete'){
+        batch.delete(o.ref);
+      }else{
+        batch.set(o.ref,o.data);
+      }
+    }
+
+    await batch.commit();
+  }
+
+  alert('클라우드 복원이 완료되었습니다.');
+}
+
+$('loginForm').addEventListener(
+  'submit',
+  async e=>{
+    e.preventDefault();
+
+    if(!auth){
+      $('loginMessage').textContent=
+        'Firebase 설정을 먼저 완료하세요.';
+      return;
+    }
+
+    let btn=e.target.querySelector('button');
+    btn.disabled=true;
+
+    $('loginMessage').textContent='로그인 중...';
+
+    try{
+      await signInWithEmailAndPassword(
+        auth,
+        $('email').value.trim(),
+        $('password').value
+      );
+    }catch(err){
+      $('loginMessage').textContent=
+        '로그인 실패: '+
+        (err.code==='auth/invalid-credential'
+          ?'이메일 또는 비밀번호를 확인하세요.'
+          :err.message);
+    }finally{
+      btn.disabled=false;
+    }
+  }
+);
+
+$('logout').addEventListener(
+  'click',
+  ()=>signOut(auth)
+);
+
+document.addEventListener('click',e=>{
+  let b=e.target.closest('button');
+  if(!b||!user)return;
+
+  let d=b.dataset;
+
+  if(d.tab){
+    go(d.tab);
+    return;
+  }
+
+  if(d.day){
+    selectedDate=d.day;
+    go('log');
+    return;
+  }
+
+  if(d.remove){
+    if(confirm('이 풀이 기록을 삭제할까요?')){
+      safeRun(
+        ()=>deleteDoc(doc(refs().entries,d.remove))
+      );
+    }
+    return;
+  }
+
+  if(d.editpaper){
+    let p=state.papers.find(
+      x=>x.id===d.editpaper
+    );
+
+    if(!p)return;
+
+    let type=prompt('시험 종류',p.type);
+    let q=type===null
+      ?null:prompt('문항 수',p.questions);
+    let y=q===null
+      ?null:prompt('연도',p.year);
+
+    if(y===null)return;
+
+    if(
+      !type.trim()||
+      !Number.isInteger(+q)||
+      +q<1||+q>500||
+      !Number.isInteger(+y)||
+      +y<1990||+y>2100
+    ){
+      return alert('입력값을 확인하세요.');
+    }
+
+    safeRun(
+      ()=>setDoc(
+        doc(refs().papers,p.id),
+        {
+          subject:p.subject,
+          year:+y,
+          type:type.trim(),
+          questions:+q
+        }
+      )
+    );
+    return;
+  }
+
+  if(d.delpaper){
+    if(confirm(
+      '시험지를 삭제할까요? 기존 풀이 이력은 남습니다.'
+    )){
+      safeRun(
+        ()=>deleteDoc(
+          doc(refs().papers,d.delpaper)
+        )
+      );
+    }
+    return;
+  }
+
+  if('rest'in d){
+    let date=$('restDate').value;
+
+    if(!Number.isFinite(dayNum(date)))return;
+
+    safeRun(
+      ()=>isRest(date)
+        ?deleteDoc(doc(refs().rests,date))
+        :setDoc(
+          doc(refs().rests,date),
+          {rest:true}
+        )
+    );
+    return;
+  }
+
+  if('backup'in d){
+    download(
+      'exam-cloud-backup-'+today()+'.json',
+      JSON.stringify(backup(),null,2),
+      'application/json'
+    );
+    return;
+  }
+
+  if('csv'in d){
+    let rows=[
+      [
+        '날짜','과목','연도','시험',
+        '풀이 문항','정답 문항'
+      ],
+      ...state.entries.map(x=>[
+        x.date,x.subject,x.year,x.type,
+        x.count,x.correct??''
+      ])
+    ];
+
+    download(
+      'exam-history.csv',
+      rows.map(
+        r=>r.map(
+          x=>'"'+String(x).replace(/"/g,'""')+'"'
+        ).join(',')
+      ).join('\r\n'),
+      'text/csv'
+    );
+    return;
+  }
+
+  if('migrate'in d){
+    let raw=localStorage.getItem(
+      'exam-15round-planner-v3'
+    );
+
+    if(raw){
+      safeRun(
+        ()=>restoreCloud(JSON.parse(raw))
+      );
+    }
+    return;
+  }
+
+  if('reset'in d){
+    if(
+      !confirm('클라우드 기록을 모두 초기화할까요?')||
+      !confirm(
+        '마지막 확인입니다. 삭제 후 복구할 수 없습니다.'
+      )
+    )return;
+
+    safeRun(
+      async()=>{
+        await restoreCloud({
+          version:4,
+          settings:defaults(),
+          papers:defaultPapers(),
+          entries:[],
+          restDates:[]
+        });
+      }
+    );
+    return;
+  }
 });
 
-save();
-render();
+document.addEventListener('change',async e=>{
+  let x=e.target;
+  if(!user)return;
+
+  if(x.id==='logSubject'){
+    selectedSubject=x.value;
+
+    selectedPaper=state.papers.find(
+      p=>p.subject===selectedSubject
+    )?.id||'';
+
+    $('logPaper').innerHTML=
+      paperOptions(selectedSubject);
+
+    $('logCount').value=state.papers.find(
+      p=>p.id===selectedPaper
+    )?.questions||20;
+
+  }else if(x.id==='logPaper'){
+    selectedPaper=x.value;
+
+    $('logCount').value=state.papers.find(
+      p=>p.id===selectedPaper
+    )?.questions||20;
+
+  }else if(x.id==='logDate'){
+    selectedDate=x.value;
+
+  }else if(x.id==='paperFilter'){
+    paperFilter=x.value;
+    render();
+
+  }else if(
+    x.id==='restoreFile'&&x.files?.[0]
+  ){
+    let file=x.files[0];
+
+    await safeRun(
+      async()=>restoreCloud(
+        JSON.parse(await file.text())
+      )
+    );
+
+    x.value='';
+  }
+});
+
+document.addEventListener('submit',e=>{
+  if(
+    !user||
+    ![
+      'logForm','paperForm',
+      'costForm','planForm'
+    ].includes(e.target.id)
+  )return;
+
+  e.preventDefault();
+
+  let id=e.target.id;
+
+  safeRun(async()=>{
+    if(id==='logForm'){
+      await addEntry();
+      return;
+    }
+
+    if(id==='paperForm'){
+      let subject=$('paperSubject').value;
+      let year=+$('paperYear').value;
+      let type=$('paperType').value.trim();
+      let questions=+$('paperQuestions').value;
+
+      if(
+        !sub().includes(subject)||
+        !Number.isInteger(year)||
+        year<1990||year>2100||
+        !type||
+        !Number.isInteger(questions)||
+        questions<1||questions>500
+      ){
+        throw Error('시험지 입력값 오류');
+      }
+
+      if(state.papers.some(
+        p=>p.subject===subject&&
+        p.year===year&&
+        p.type===type
+      )){
+        throw Error('이미 등록된 시험지입니다.');
+      }
+
+      await setDoc(
+        doc(refs().papers,uid()),
+        {subject,year,type,questions}
+      );
+      return;
+    }
+
+    if(id==='costForm'){
+      let s={};
+
+      for(let [f,k] of [
+        ['salary','monthlySalary'],
+        ['childcare','monthlyChildcare'],
+        ['pastYears','pastYears'],
+        ['pastAnnualCost','pastAnnualCost'],
+        ['futureAnnualCost','futureAnnualCost']
+      ]){
+        let n=+$(f).value;
+
+        if(
+          !Number.isFinite(n)||
+          n<0||n>5000
+        ){
+          throw Error('금액 입력값 오류');
+        }
+
+        s[k]=n;
+      }
+
+      await setDoc(
+        refs().settings,s,{merge:true}
+      );
+      return;
+    }
+
+    if(id==='planForm'){
+      let startDate=$('startDate').value;
+      let targetDate=$('targetDate').value;
+      let applicationDate=$('applicationDate').value;
+      let rounds=+$('rounds').value;
+      let mode=$('mode').value;
+
+      if(
+        !Number.isFinite(dayNum(startDate))||
+        !Number.isFinite(dayNum(targetDate))||
+        !Number.isFinite(dayNum(applicationDate))||
+        diff(startDate,targetDate)<=0||
+        !Number.isInteger(rounds)||
+        rounds<1||rounds>1000||
+        !SUBJECTS[mode]
+      ){
+        throw Error('계획 입력값 오류');
+      }
+
+      await setDoc(
+        refs().settings,
+        {
+          startDate,
+          targetDate,
+          applicationDate,
+          rounds,
+          mode
+        },
+        {merge:true}
+      );
+    }
+  });
+});
+
+if(
+  firebaseConfig.apiKey.startsWith('여기에_')||
+  firebaseConfig.projectId.startsWith('여기에_')
+){
+  showLogin(
+    '먼저 index.html의 firebaseConfig를 본인 프로젝트 값으로 교체하세요.'
+  );
+}else{
+  try{
+    const app=initializeApp(firebaseConfig);
+
+    auth=getAuth(app);
+    fire=getFirestore(app);
+
+    onAuthStateChanged(auth,async u=>{
+      clearListening();
+      user=u;
+
+      if(!u){
+        showLogin();
+        return;
+      }
+
+      showApp();
+      setStatus('초기 데이터 확인 중...');
+
+      try{
+        await initializeUser();
+
+        if(auth.currentUser?.uid===u.uid){
+          startListening();
+        }
+      }catch(err){
+        console.error(err);
+        setStatus('연결 오류');
+
+        $('view').innerHTML=`
+          <div class="card">
+            Firestore 연결 실패:
+            보안 규칙과 데이터베이스 생성 여부를
+            확인하세요.
+          </div>`;
+      }
+    });
+
+  }catch(err){
+    showLogin(
+      'Firebase 설정 오류: '+err.message
+    );
+  }
+}
 </script>
 </body>
 </html>
