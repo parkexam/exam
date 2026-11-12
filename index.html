@@ -788,8 +788,20 @@ const planDays = () =>
     diff(state.settings.startDate,state.settings.targetDate)||1
   );
 
-const dayGoal = () =>
-  Math.max(1,Math.ceil(goal()/planDays()));
+// LEET 추리논증은 다른 과목의 회독 기반 일일 할당량과 별도로 하루 3문항
+const LEET_DAILY_GOAL = 3;
+const leetOnDay = s => entries()
+  .filter(e=>e.date===s && e.subject==='LEET 추리논증')
+  .reduce((n,e)=>n+Number(e.count||0),0);
+const otherOnDay = s => onDay(s)-leetOnDay(s);
+const otherDayGoal = () => Math.max(1,Math.ceil(
+  state.papers.filter(p=>sub().includes(p.subject) && p.subject!=='LEET 추리논증')
+    .reduce((n,p)=>n+Number(p.questions||0),0) *
+  Number(state.settings.rounds||15) / planDays()
+));
+const dayGoal = () => otherDayGoal()+LEET_DAILY_GOAL;
+const dailyProgress = s => Math.min(1,otherOnDay(s)/otherDayGoal()) * otherDayGoal()
+  + Math.min(1,leetOnDay(s)/LEET_DAILY_GOAL) * LEET_DAILY_GOAL;
 
 const daysLeft = () =>
   Math.max(0,diff(today(),state.settings.targetDate));
@@ -810,7 +822,7 @@ const isStudyDay = s =>
 const dailyProfit = s =>
   !isStudyDay(s)||isRest(s)
   ? 0
-  : Math.round(baseMoney()*(onDay(s)/dayGoal()-1));
+  : Math.round(baseMoney()*(dailyProgress(s)/dayGoal()-1));
 
 const percent = (n,d) => d?100*n/d:0;
 
@@ -1233,7 +1245,7 @@ function wrongStats(){
 
 function dashboard(){
   let count=onDay(today());
-  let rate=percent(count,dayGoal());
+  let rate=percent(dailyProgress(today()),dayGoal());
   let profit=dailyProfit(today());
   let total=cumulative();
   let overall=percent(solved(),goal());
@@ -1278,7 +1290,8 @@ function dashboard(){
         <small>당일 학습 진도율</small>
         <div class="big">${rate.toFixed(1)}%</div>
         <small>
-          ${fmt(count)} / ${fmt(dayGoal())}문항
+          ${fmt(count)}문항 풀이 · 목표 ${fmt(dayGoal())}문항
+          (LEET ${fmt(leetOnDay(today()))}/${LEET_DAILY_GOAL}문항)
         </small>
       </div>
 
@@ -1858,7 +1871,7 @@ function monthHTML(y,m){
     let cls=
       date===state.settings.targetDate?'exam':
       isRest(date)?'rest':
-      n>=dayGoal()?'done':
+      dailyProgress(date)>=dayGoal()?'done':
       n>0?'partial':
       date<today()?'past':'';
 
@@ -2237,7 +2250,7 @@ function settingsView(){
         국어·영어는 2016~2026년
         국가직·지방직 9급 각 20문항,
         전문과목은 연도별 20문항,
-        LEET는 6개년 각 40문항으로 시작합니다.
+        LEET는 6개년 각 40문항으로 시작하며, 일일 목표는 3문항입니다.
         실제 기출에 맞춰 수정하세요.
       </div>
     </section>
