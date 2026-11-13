@@ -720,7 +720,7 @@ const defaultPapers = () => {
       subject:'LEET 추리논증',
       year:y,
       type:'추리논증',
-      questions:40
+      questions:3
     });
   }
 
@@ -788,20 +788,19 @@ const planDays = () =>
     diff(state.settings.startDate,state.settings.targetDate)||1
   );
 
-// LEET 추리논증은 다른 과목의 회독 기반 일일 할당량과 별도로 하루 3문항
+// 과목별 고정 일일 목표: 일반과목 20문항씩, LEET 3문항
 const LEET_DAILY_GOAL = 3;
+const dailySubjectGoal = s => s==='LEET 추리논증' ? 3 : 20;
+const dayGoal = () => sub().reduce((sum,s)=>sum+dailySubjectGoal(s),0);
 const leetOnDay = s => entries()
   .filter(e=>e.date===s && e.subject==='LEET 추리논증')
   .reduce((n,e)=>n+Number(e.count||0),0);
-const otherOnDay = s => onDay(s)-leetOnDay(s);
-const otherDayGoal = () => Math.max(1,Math.ceil(
-  state.papers.filter(p=>sub().includes(p.subject) && p.subject!=='LEET 추리논증')
-    .reduce((n,p)=>n+Number(p.questions||0),0) *
-  Number(state.settings.rounds||15) / planDays()
-));
-const dayGoal = () => otherDayGoal()+LEET_DAILY_GOAL;
-const dailyProgress = s => Math.min(1,otherOnDay(s)/otherDayGoal()) * otherDayGoal()
-  + Math.min(1,leetOnDay(s)/LEET_DAILY_GOAL) * LEET_DAILY_GOAL;
+const dailyProgress = date => sub().reduce((sum,subject)=>{
+  const count=entries()
+    .filter(e=>e.date===date && e.subject===subject)
+    .reduce((n,e)=>n+Number(e.count||0),0);
+  return sum+Math.min(dailySubjectGoal(subject),count);
+},0);
 
 const daysLeft = () =>
   Math.max(0,diff(today(),state.settings.targetDate));
@@ -846,7 +845,7 @@ const sessions = s => {
         Number(
           map.get(e.paperId)?.questions ||
           e.paperQuestions ||
-          (s==='LEET 추리논증'?40:20)
+          (s==='LEET 추리논증'?3:20)
         )
       ),0);
 };
@@ -2250,7 +2249,7 @@ function settingsView(){
         국어·영어는 2016~2026년
         국가직·지방직 9급 각 20문항,
         전문과목은 연도별 20문항,
-        LEET는 6개년 각 40문항으로 시작하며, 일일 목표는 3문항입니다.
+        LEET는 6개년 각 3문항으로 시작하며, 일일 목표도 3문항입니다.
         실제 기출에 맞춰 수정하세요.
       </div>
     </section>
@@ -2427,6 +2426,21 @@ async function initializeUser(){
   }
 
   await batch.commit();
+}
+
+async function migrateLegacyLeetPapers(){
+  const snap=await getDocs(refs().papers);
+  const batch=writeBatch(fire);
+  let changed=false;
+  for(const item of snap.docs){
+    const p=item.data();
+    if(/^p-LEET-20\d{2}$/.test(item.id) &&
+       p.subject==='LEET 추리논증' && Number(p.questions)===40){
+      batch.set(item.ref,{questions:3},{merge:true});
+      changed=true;
+    }
+  }
+  if(changed) await batch.commit();
 }
 
 function clearListening(){
@@ -2829,7 +2843,7 @@ document.addEventListener('click',e=>{
         )?.questions ||
         (
           entry.subject==='LEET 추리논증'
-            ?40:20
+            ?3:20
         )
       );
 
@@ -3240,6 +3254,7 @@ try{
 
     try{
       await initializeUser();
+      await migrateLegacyLeetPapers();
 
       if(auth.currentUser?.uid===u.uid){
         startListening();
