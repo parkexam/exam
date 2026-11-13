@@ -511,6 +511,13 @@ h1,h2,h3,p{margin-top:0}
 }
 @media(max-width:360px){.grid3{grid-template-columns:1fr}.metric small{font-size:12px}.big.money{font-size:22px}}
 
+/* 기출문제 바로가기: D-day 카드와 동일한 스타일 */
+.count.exam-link{display:flex;flex-direction:column;justify-content:center;color:inherit;text-decoration:none;transition:background .15s,border-color .15s}
+.count.exam-link b{font-size:24px;white-space:nowrap}
+.count.exam-link:hover{background:rgba(255,255,255,.16);border-color:rgba(255,255,255,.4)}
+.count.exam-link:focus-visible{outline:3px solid #fde047;outline-offset:3px}
+@media(min-width:801px){.hero{flex-wrap:wrap}.countdowns{margin-left:auto}}
+@media(max-width:800px){.count.exam-link b{font-size:clamp(16px,4.5vw,22px)}}
 </style>
 </head>
 <body>
@@ -937,6 +944,10 @@ function hero(){
       </div>
 
       <div class="countdowns">
+        <a class="count exam-link" href="https://parkexam.github.io/pass/" aria-label="기출문제 풀이 페이지로 이동">
+          <b>기출문제</b>
+          <small>문제 풀러가기 ↗</small>
+        </a>
         <div class="count application">
           <b>${dday(state.settings.applicationDate)}</b>
           <small>
