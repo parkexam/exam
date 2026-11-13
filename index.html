@@ -788,18 +788,19 @@ const planDays = () =>
     diff(state.settings.startDate,state.settings.targetDate)||1
   );
 
-// 과목별 고정 일일 목표: 일반과목 20문항씩, LEET 3문항
+// 과목별 동등 비중: 일반과목 20문항, LEET 3문항을 각각 20점으로 환산
 const LEET_DAILY_GOAL = 3;
-const dailySubjectGoal = s => s==='LEET 추리논증' ? 3 : 20;
-const dayGoal = () => sub().reduce((sum,s)=>sum+dailySubjectGoal(s),0);
-const leetOnDay = s => entries()
-  .filter(e=>e.date===s && e.subject==='LEET 추리논증')
+const dailySubjectGoal = subject => subject==='LEET 추리논증' ? 3 : 20;
+const dayGoal = () => sub().length*20; // 5과목 = 환산 100점
+const leetOnDay = date => entries()
+  .filter(e=>e.date===date && e.subject==='LEET 추리논증')
   .reduce((n,e)=>n+Number(e.count||0),0);
 const dailyProgress = date => sub().reduce((sum,subject)=>{
   const count=entries()
     .filter(e=>e.date===date && e.subject===subject)
     .reduce((n,e)=>n+Number(e.count||0),0);
-  return sum+Math.min(dailySubjectGoal(subject),count);
+  // 목표 초과분은 다른 과목의 미달을 대신하지 않음
+  return sum+20*Math.min(1,Math.max(0,count)/dailySubjectGoal(subject));
 },0);
 
 const daysLeft = () =>
@@ -1289,8 +1290,8 @@ function dashboard(){
         <small>당일 학습 진도율</small>
         <div class="big">${rate.toFixed(1)}%</div>
         <small>
-          ${fmt(count)}문항 풀이 · 목표 ${fmt(dayGoal())}문항
-          (LEET ${fmt(leetOnDay(today()))}/${LEET_DAILY_GOAL}문항)
+          실제 ${fmt(count)}문항 풀이 · 환산 ${fmt1(dailyProgress(today()))}/100점
+          (일반과목 각 20문항, LEET ${fmt(leetOnDay(today()))}/${LEET_DAILY_GOAL}문항)
         </small>
       </div>
 
@@ -2249,7 +2250,7 @@ function settingsView(){
         국어·영어는 2016~2026년
         국가직·지방직 9급 각 20문항,
         전문과목은 연도별 20문항,
-        LEET는 6개년 각 3문항으로 시작하며, 일일 목표도 3문항입니다.
+        LEET는 6개년 각 3문항으로 시작하며, 하루 3문항을 20점으로 환산합니다.
         실제 기출에 맞춰 수정하세요.
       </div>
     </section>
